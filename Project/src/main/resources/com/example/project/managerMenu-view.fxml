@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="287.0" prefWidth="162.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="24.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu - Manager">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="moviesButton" layoutX="32.0" layoutY="67.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Movies" />
+      <Button fx:id="screeningsButton" layoutX="32.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Screenings" />
+      <Button fx:id="showtimesButton" layoutX="32.0" layoutY="140.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Showtimes" />
+      <Button fx:id="reportsButton" layoutX="32.0" layoutY="176.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Reports" />
+      <Button fx:id="clientsButton" layoutX="32.0" layoutY="212.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="List of Clients" />
+      <Button fx:id="closeButton" layoutX="32.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Close" />
+   </children>
+</AnchorPane>
