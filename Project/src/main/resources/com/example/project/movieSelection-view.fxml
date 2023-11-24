@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="168.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movie Selection">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="welcomeText" layoutX="180.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, [user]!" />
+      <Text layoutX="14.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies" />
+      <Text layoutX="270.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Showtimes" />
+      <Text layoutX="14.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tickets:" />
+      <TextField fx:id="numberOfTicketsTextfield" layoutX="117.0" layoutY="316.0" prefHeight="26.0" prefWidth="50.0" />
+      <Button fx:id="buyTicketsButton" layoutX="19.0" layoutY="357.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Buy Ticket(s)" />
+      <Button fx:id="closeButton" layoutX="114.0" layoutY="357.0" mnemonicParsing="false" text="Close" />
+      <ListView fx:id="moviesListView" layoutX="11.0" layoutY="104.0" prefHeight="200.0" prefWidth="245.0" />
+      <ListView fx:id="showtimesListView" layoutX="268.0" layoutY="104.0" prefHeight="200.0" prefWidth="171.0" />
+   </children>
+</AnchorPane>
