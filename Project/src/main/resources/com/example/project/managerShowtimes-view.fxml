@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="103.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of the Showtimes">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="18.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Showtime:" />
+      <TextField fx:id="showtimeTextfield" layoutX="84.0" layoutY="294.0" prefHeight="26.0" prefWidth="161.0" />
+      <Button fx:id="addButton" layoutX="85.0" layoutY="404.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="modifyButton" layoutX="133.0" layoutY="404.0" mnemonicParsing="false" text="Modify" />
+      <Button fx:id="deleteButton" layoutX="196.0" layoutY="404.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="closeButton" layoutX="84.0" layoutY="438.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" text="Close Window" />
+      <ListView fx:id="showtimesListView" layoutX="11.0" layoutY="82.0" prefHeight="200.0" prefWidth="334.0" />
+      <ChoiceBox fx:id="movieChoiceBox" layoutX="84.0" layoutY="330.0" prefHeight="26.0" prefWidth="162.0" />
+      <ChoiceBox fx:id="screeningChoiceBox" layoutX="83.0" layoutY="367.0" prefHeight="26.0" prefWidth="162.0" />
+      <Text layoutX="37.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movie:" />
+      <Text layoutX="18.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Screening:" />
+   </children>
+</AnchorPane>
