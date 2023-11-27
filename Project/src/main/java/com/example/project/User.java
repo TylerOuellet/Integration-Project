@@ -1,5 +1,9 @@
 package com.example.project;
 
+/**
+ * This User class represents a basic user in the system.
+ * It includes functionality for managing the user's password, username, and manager status.
+ */
 public abstract class User {
     private String aPassword;
 
@@ -7,6 +11,12 @@ public abstract class User {
 
     private Boolean aIsManager;
 
+    /**
+     * It sets the password for the user.
+     *
+     * @param pPassword The password of the user.
+     * @throws IllegalArgumentException If the password length is not between 8 and 256.
+     */
     void setPassword(String pPassword){
         if (pPassword.length() > 8 && pPassword.length() < 256 ){
             this.aPassword = pPassword;
@@ -15,10 +25,20 @@ public abstract class User {
         }
     }
 
+    /**
+     * It returns the password of the user.
+     * @return The password's username.
+     */
     String getPassword(){
         return aPassword;
     }
 
+    /**
+     * It sets all the manager status for the user.
+     *
+     * @param pUsername The username of the user.
+     * @throws IllegalArgumentException If the user status length is not between 2 and 256.
+     */
      void setUsername(String pUsername){
         if (pUsername.length() >= 2 && pUsername.length() < 256){
             this.aUsername = pUsername;
@@ -27,10 +47,20 @@ public abstract class User {
         }
     }
 
+    /**
+     * It returns the username of the user.
+     * @return The user's username.
+     */
     String getUsername(){
         return aUsername;
     }
 
+    /**
+     * It sets the manager status for the user if necessary (TRUE or FALSE).
+     *
+     * @param pIsManager The manager status to set for the user.
+     * @throws IllegalArgumentException If the manager status is null.
+     */
     void setManagerStatus(Boolean pIsManager){
         if (pIsManager != null ){
             aIsManager = pIsManager;
@@ -39,6 +69,10 @@ public abstract class User {
         }
     }
 
+    /**
+     * It returns the manager status of the user.
+     * @return The manager status of the user (aIsManager).
+     */
     boolean getManagerStatus(){
         return aIsManager;
     }
