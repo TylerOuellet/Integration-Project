@@ -23,6 +23,23 @@ public class Client extends User {
     private LocalDateTime aSignUP;
 
     /**
+     * Constructor for client
+     * @param pClientID clientID input
+     * @param pEmail email input
+     * @param pSignUp signup date input
+     * @param pPassword password input
+     * @param pUsername username input
+     */
+    public Client (String pClientID, String pEmail, LocalDateTime pSignUp, String pPassword, String pUsername){
+        setEmail(pEmail);
+        setClientID(pClientID);
+        setSignUp(pSignUp);
+        setPassword(pPassword);
+        setUsername(pUsername);
+        setManagerStatus(false);
+    }
+
+    /**
      * Setter for email, contains input validation to validate if the input is an email
      * @param pEmail the setter requests an email as a string which it then validates
      */
