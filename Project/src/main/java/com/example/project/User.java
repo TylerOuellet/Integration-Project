@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class User {
+public abstract class User {
     private String aPassword;
 
     private String aUsername;
