@@ -8,6 +8,12 @@ public class Movie implements ManagementCollection{
 
     private int aRuntime;
 
+    public Movie(String pTitle, Genre pGenre, int pRuntime) {
+        this.setTitle(pTitle);
+        this.setGenre(pGenre);
+        this.setRuntime(pRuntime);
+    }
+
     void setTitle(String pTitle){
         if(pTitle.length() < 255){
             this.aTitle = pTitle;
@@ -21,6 +27,9 @@ public class Movie implements ManagementCollection{
         } else {
             throw new IllegalArgumentException("Movie length should not exceed 1440 minuets");
         }
+    }
+    void setGenre(Genre pGenre){
+        this.aGenre = pGenre;
     }
     String getTitle(){
         return aTitle;

@@ -1,5 +1,6 @@
 package com.example.project;
 
-public class Manager extends User{
+public class
+Manager extends User{
 
 }
