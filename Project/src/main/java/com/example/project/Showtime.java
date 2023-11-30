@@ -1,6 +1,7 @@
 package com.example.project;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents the showtime in the movie theater for the application.
@@ -91,5 +92,12 @@ public class Showtime implements ManagementCollection {
         } else {
             throw new IllegalArgumentException("The screening room cannot be null.");
         }
+    }
+
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return getShowTime().format(formatter);
     }
 }

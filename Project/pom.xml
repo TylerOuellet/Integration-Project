@@ -36,7 +36,13 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+      <dependency>
+          <groupId>org.apache.maven.surefire</groupId>
+          <artifactId>surefire-shared-utils</artifactId>
+          <version>3.0.0</version>
+      </dependency>
+  </dependencies>
 
   <build>
     <plugins>
