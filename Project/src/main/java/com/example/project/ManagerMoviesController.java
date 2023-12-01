@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -36,6 +38,8 @@ public class ManagerMoviesController implements Initializable {
 
     private ManagerMenuController aManagerMenuController;
 
+    ListStorage aListStorage = new ListStorage();
+
     public void bindTOManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
     }
@@ -50,9 +54,13 @@ public class ManagerMoviesController implements Initializable {
         Movie test2 = new Movie("test2", Genre.Action, 123 );
         Movie test3 = new Movie("test3", Genre.Action, 123 );
 
-        loadedMovies.add(test1);
-        loadedMovies.add(test2);
-        loadedMovies.add(test3);
+        aListStorage.getMovieList().add(test1);
+        aListStorage.getMovieList().add(test2);
+        aListStorage.getMovieList().add(test3);
+
+
+
+
 
         this.movieNameTextfield.setText("asdf");
 
@@ -60,10 +68,11 @@ public class ManagerMoviesController implements Initializable {
     }
     int count = 1;
     public void displayMovies(){
-        ObservableList<String> observableMovies = FXCollections.observableArrayList(loadedMovies.composeList());
+        ObservableList<String> observableMovies = FXCollections.observableArrayList(aListStorage.getMovieList().composeList());
         moviesListView.getItems().removeAll();
         moviesListView.getItems().addAll(observableMovies);
         moviesListView.refresh();
+
 
 
         System.out.println(count);
@@ -90,7 +99,23 @@ public class ManagerMoviesController implements Initializable {
         int runtime = Integer.parseInt(runtimeTextField.getText());
         Movie newMovie = new Movie(movieTitle, selectedGenre, runtime);
         System.out.println(newMovie.getTitle());
-        loadedMovies.add(newMovie);
+        aListStorage.getMovieList().add(newMovie);
+        moviesListView.getItems().clear();
+        displayMovies();
+    }
+
+    @FXML
+    void onDeleteClick(){
+        aListStorage.getMovieList().delete(moviesListView.getSelectionModel().getSelectedIndex());
+        moviesListView.getItems().clear();
+        displayMovies();
+    }
+    @FXML
+    void onUpdateClick(){
+        int runtime = Integer.parseInt(runtimeTextField.getText());
+        Movie updatedMovie = new Movie(movieNameTextfield.getText(), genreChoiceBox.getValue(), runtime);
+        aListStorage.getMovieList().update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
+        moviesListView.getItems().clear();
         displayMovies();
     }
 
@@ -100,6 +125,20 @@ public class ManagerMoviesController implements Initializable {
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);
         }
+        moviesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                movieNameTextfield.setText(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
+                runtimeTextField.setText(String.valueOf(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
+                genreChoiceBox.setValue(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
+                System.out.println("Selected item: " + newValue);
+            }
+        });
+
+
 
     }
+
+
+
 }

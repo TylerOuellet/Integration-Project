@@ -30,4 +30,10 @@ public class MovieList {
         }
         return listed;
     }
+    public void delete(int pIndex){
+        this.aMovieList.remove(pIndex);
+    }
+    public void update(int pIndex, Movie pMovie){
+        this.aMovieList.set(pIndex,pMovie);
+    }
 }
