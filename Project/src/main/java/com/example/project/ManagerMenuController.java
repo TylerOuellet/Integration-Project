@@ -39,15 +39,16 @@ public class ManagerMenuController implements Initializable {
     private Tab statsTab;
 
     @FXML
-    private ManagerMoviesController aManagerMoviesController;
+    private ManagerMoviesController nestedMoviesViewController;
 
     @FXML
     void test (Event event){
-//        if (movieTab.isSelected()){
-//            if(aManagerMoviesController != null){
-//                aManagerMoviesController.importMovies();
-//            }
-//        }
+        if (movieTab.isSelected()){
+            if(nestedMoviesViewController != null){
+                this.nestedMoviesViewController.bindTOManagerMenuController(this);
+                System.out.print("ManagerMoviesController set successfully");
+            }
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
