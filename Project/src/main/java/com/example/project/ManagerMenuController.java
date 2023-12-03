@@ -18,7 +18,7 @@ public class ManagerMenuController implements Initializable {
     private AnchorPane nestedShowtimesView;
 
     @FXML
-    private AnchorPane nestedScreeningsView;
+    private AnchorPane nestedScreeningRoomView;
 
     @FXML
     private AnchorPane nestedMoviesView;
@@ -40,6 +40,21 @@ public class ManagerMenuController implements Initializable {
 
     @FXML
     private ManagerMoviesController nestedMoviesViewController;
+
+    @FXML
+    private ManagerScreeningRoomController nestedScreeningRoomViewController;
+
+    @FXML
+    void screeningRoomSwitch (Event event){
+        if (screeningRoomTab.isSelected()){
+            if (nestedScreeningRoomViewController != null){
+                this.nestedScreeningRoomViewController.bindToManagerMenuController(this);
+                nestedScreeningRoomViewController.displayScreeningRooms();
+
+            }
+
+        }
+    }
 
     @FXML
     void test (Event event){

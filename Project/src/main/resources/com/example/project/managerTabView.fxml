@@ -11,15 +11,15 @@
         <tabs>
           <Tab fx:id="showtimeTab" text="Showtimes">
             <content>
-                <HBox alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="493.0" prefWidth="600.0">
                 <fx:include fx:id="nestedShowtimesView" source="managerShowtimes-view.fxml" />
                 </HBox>
             </content>
           </Tab>
-          <Tab fx:id="screeningRoomTab" text="Screening Rooms">
+          <Tab fx:id="screeningRoomTab" onSelectionChanged="#screeningRoomSwitch" text="Screening Rooms">
             <content>
                 <HBox alignment="CENTER">
-                <fx:include fx:id="nestedScreeningsView" source="managerScreenings-view.fxml" />
+                <fx:include fx:id="nestedScreeningRoomView" source="managerScreeningRoom-view.fxml" />
                 </HBox>
             </content>
           </Tab>
