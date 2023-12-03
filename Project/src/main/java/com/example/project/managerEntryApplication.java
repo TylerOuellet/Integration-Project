@@ -14,11 +14,11 @@ public class managerEntryApplication extends Application {
             FXMLLoader fxmlLoaderManager = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerTabView.fxml"));
             Parent managerParent = fxmlLoaderManager.load();
             Scene scene = new Scene(managerParent, 600, 400);
-            FXMLLoader fxmlLoaderMovie = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerMovies-view.fxml"));
+            //FXMLLoader fxmlLoaderMovie = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerMovies-view.fxml"));
             //Parent movieParent = fxmlLoaderMovie.load();
             //fxmlLoaderMovie = fxmlLoaderMovie.load();
             //ManagerMoviesController newManagerMoviesController = fxmlLoaderMovie.getController();
-          // newManagerMoviesController.importMovies();
+            // newManagerMoviesController.importMovies();
 
             //ManagerMoviesController managerMoviesController = new ManagerMoviesController();
 

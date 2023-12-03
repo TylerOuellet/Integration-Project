@@ -53,8 +53,10 @@ public class ManagerMoviesController implements Initializable {
         loadedMovies.add(test1);
         loadedMovies.add(test2);
         loadedMovies.add(test3);
-
         this.movieNameTextfield.setText("asdf");
+        System.out.println(this.movieNameTextfield.getText());
+
+
 
         displayMovies();
     }
@@ -96,10 +98,9 @@ public class ManagerMoviesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // importMovies();
+        importMovies();
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);
         }
-
     }
 }

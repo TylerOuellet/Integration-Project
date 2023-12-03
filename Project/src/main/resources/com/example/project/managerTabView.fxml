@@ -12,29 +12,28 @@
           <Tab fx:id="showtimeTab" text="Showtimes">
             <content>
                 <HBox alignment="CENTER">
-                <fx:include source="managerShowtimes-view.fxml" />
+                <fx:include fx:id="nestedShowtimesView" source="managerShowtimes-view.fxml" />
                 </HBox>
-
             </content>
           </Tab>
           <Tab fx:id="screeningRoomTab" text="Screening Rooms">
             <content>
                 <HBox alignment="CENTER">
-                <fx:include source="managerScreenings-view.fxml" />
+                <fx:include fx:id="nestedScreeningsView" source="managerScreenings-view.fxml" />
                 </HBox>
             </content>
           </Tab>
             <Tab fx:id="movieTab" onSelectionChanged="#test" text="Movies">
               <content>
                   <HBox alignment="CENTER">
-                  <fx:include source="managerMovies-view.fxml" fx:id="movieManager"/>
+                  <fx:include fx:id="nestedMoviesView" source="managerMovies-view.fxml" />
                   </HBox>
               </content>
             </Tab>
             <Tab fx:id="statsTab" text="Statistics">
               <content>
                   <HBox alignment="CENTER">
-                  <fx:include source="managerReports-view.fxml" />
+                  <fx:include fx:id="nestedStatsView" source="managerReports-view.fxml" />
                   </HBox>
               </content>
             </Tab>
