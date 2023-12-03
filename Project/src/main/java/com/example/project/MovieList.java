@@ -10,7 +10,11 @@ public class MovieList {
     private final List<Movie> aMovieList = new ArrayList<Movie>();
 
     public Movie getIndex(int selectedIndex){
-        return this.aMovieList.get(selectedIndex);
+        if (selectedIndex > -1) {
+            return this.aMovieList.get(selectedIndex);
+        }
+        else
+            return this.aMovieList.get(0);
     }
     public void setName(String pName){
         this.aName = pName;

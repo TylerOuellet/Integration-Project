@@ -47,6 +47,7 @@ public class ManagerMenuController implements Initializable {
             if(nestedMoviesViewController != null){
                 this.nestedMoviesViewController.bindTOManagerMenuController(this);
                 System.out.print("ManagerMoviesController set successfully");
+                nestedMoviesViewController.displayMovies();
             }
         }
     }

@@ -13,7 +13,6 @@ public class managerMovieEntry extends Application {
         FXMLLoader loader = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerMovies-view.fxml"));
         Scene scene = new Scene(loader.load());
         ManagerMoviesController mv = loader.getController();
-        mv.importMovies();
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

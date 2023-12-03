@@ -13,16 +13,7 @@ public class managerEntryApplication extends Application {
         public void start(Stage stage) throws IOException {
             FXMLLoader fxmlLoaderManager = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerTabView.fxml"));
             Parent managerParent = fxmlLoaderManager.load();
-            Scene scene = new Scene(managerParent, 600, 400);
-            //FXMLLoader fxmlLoaderMovie = new FXMLLoader(com.example.project.MovieApplication.class.getResource("managerMovies-view.fxml"));
-            //Parent movieParent = fxmlLoaderMovie.load();
-            //fxmlLoaderMovie = fxmlLoaderMovie.load();
-            //ManagerMoviesController newManagerMoviesController = fxmlLoaderMovie.getController();
-            // newManagerMoviesController.importMovies();
-
-            //ManagerMoviesController managerMoviesController = new ManagerMoviesController();
-
-            //managerMoviesController.importMovies();
+            Scene scene = new Scene(managerParent, 600, 515);
             stage.setTitle("Login");
             stage.setScene(scene);
             stage.show();

@@ -44,54 +44,20 @@ public class ManagerMoviesController implements Initializable {
         this.aManagerMenuController = pManagerMenuController;
     }
 
-    public void importMovies(){
-        System.out.println("Success");
 
-        //For Testing, to be removed with serialized load
-
-
-        Movie test1 = new Movie("test1", Genre.Action, 123 );
-        Movie test2 = new Movie("test2", Genre.Action, 123 );
-        Movie test3 = new Movie("test3", Genre.Action, 123 );
-
-
-
-		
-        aListStorage.getMovieList().add(test1);
-        aListStorage.getMovieList().add(test2);
-        aListStorage.getMovieList().add(test3);
-
-        this.movieNameTextfield.setText("asdf");
-
-        displayMovies();
-    }
-    int count = 1;
     public void displayMovies(){
-     ObservableList<String> observableMovies = FXCollections.observableArrayList(aListStorage.getMovieList().composeList());
-        moviesListView.getItems().removeAll();
-        moviesListView.getItems().addAll(observableMovies);
+        moviesListView.getSelectionModel().selectFirst();
+        moviesListView.getItems().clear();
+
+       // moviesListView.getItems().removeAll();
+        moviesListView.getItems().setAll(aListStorage.getMovieList().composeList());
+        moviesListView.getSelectionModel().selectFirst();
+       // moviesListView.getSelectionModel().selectFirst();
         moviesListView.refresh();
-
-
-        System.out.println(count);
-
-        count++;
-    }
-
-
-
-
-    @FXML
-    void test (Event event){
-
-            System.out.println("Loaded!");
-
-
     }
 
     @FXML
     void onAddClick(){
-        System.out.println("hello world");
         String movieTitle = movieNameTextfield.getText();
         Genre selectedGenre = genreChoiceBox.getValue();
         int runtime = Integer.parseInt(runtimeTextField.getText());
@@ -118,7 +84,17 @@ public class ManagerMoviesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // importMovies();
+        Movie test1 = new Movie("test1", Genre.Action, 123 );
+        Movie test2 = new Movie("test2", Genre.Action, 123 );
+        Movie test3 = new Movie("test3", Genre.Action, 123 );
+
+
+
+
+        aListStorage.getMovieList().add(test1);
+        aListStorage.getMovieList().add(test2);
+        aListStorage.getMovieList().add(test3);
+
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);
         }
@@ -128,11 +104,7 @@ public class ManagerMoviesController implements Initializable {
                 movieNameTextfield.setText(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
                 runtimeTextField.setText(String.valueOf(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
                 genreChoiceBox.setValue(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
-                System.out.println("Selected item: " + newValue);
             }
         });
-
-
-
     }
 }
