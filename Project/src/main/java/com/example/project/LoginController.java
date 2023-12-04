@@ -24,12 +24,10 @@ public class LoginController {
     private UserService userService;
 
     public void initialize() {
-        // Sample data
-        userService = new UserService(List.of(
-                new ConcreteUser(375902, "Sherry Roselyn", "MSH456", "weifh7832", false),
-                new ConcreteUser(310976, "Kevin Watson", "MKW789", "klsdg9871", false),
-                new ConcreteUser(487381, "John Smith", "MJS123", "kadh23907", true)
-        ));
+        // Load users from file
+        List<ConcreteUser> loadedUsers = UserDataStorage.loadUsers();
+        userService = new UserService(loadedUsers);
+        userService.printUserDetails();
     }
 
     @FXML
@@ -52,11 +50,11 @@ public class LoginController {
     }
 
     private void openRegisterView() {
+        Stage stage = (Stage) usernameTextField.getScene().getWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("register-view.fxml"));
             Parent root = loader.load();
 
-            Stage stage = new Stage();
             stage.setTitle("Register");
             stage.setScene(new Scene(root));
             stage.show();
