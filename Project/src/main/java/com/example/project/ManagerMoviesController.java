@@ -81,6 +81,9 @@ public class ManagerMoviesController implements Initializable {
         moviesListView.getItems().clear();
         displayMovies();
     }
+    MovieList export(){
+        return loadedMovies;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,12 +91,16 @@ public class ManagerMoviesController implements Initializable {
         Movie test2 = new Movie("test2", Genre.Action, 123 );
         Movie test3 = new Movie("test3", Genre.Action, 123 );
 
+        loadedMovies.add(test1);
+        loadedMovies.add(test2);
 
 
 
-        aListStorage.getMovieList().add(test1);
-        aListStorage.getMovieList().add(test2);
-        aListStorage.getMovieList().add(test3);
+
+
+       aListStorage.getMovieList().add(test1);
+       aListStorage.getMovieList().add(test2);
+       aListStorage.getMovieList().add(test3);
 
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);

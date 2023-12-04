@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -16,11 +18,17 @@ public class ManagerScreeningRoomController implements Initializable {
     @FXML
     private TextField roomIDTextField;
 
+    @FXML
     private TextField seatsTextField;
 
     ListStorage aListStorage = new ListStorage();
 
     private ManagerMenuController aManagerMenuController;
+
+    MovieList loadedMovies = new MovieList();
+
+    ScreeningRoomList aScreeningRoomList = new ScreeningRoomList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,19 +36,54 @@ public class ManagerScreeningRoomController implements Initializable {
         ScreeningRoom test2 = new  ScreeningRoom(123, "QWE");
         ScreeningRoom test3 = new  ScreeningRoom(123, "QWE");
 
-        aListStorage.getScreeningRoomList().add(test1);
-        aListStorage.getScreeningRoomList().add(test2);
-        aListStorage.getScreeningRoomList().add(test3);
+        aScreeningRoomList.add(test1);
+        aScreeningRoomList.add(test2);
+        aScreeningRoomList.add(test3);
+
+        screeningRoomListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                seatsTextField.setText(String.valueOf(aScreeningRoomList.getIndex(screeningRoomListView.getSelectionModel().getSelectedIndex()).getRemainingSeats()));
+                roomIDTextField.setText(aScreeningRoomList.getIndex(screeningRoomListView.getSelectionModel().getSelectedIndex()).getRoomID());
+            }
+        });
 
     }
 
     public void bindToManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
     }
+    public void importMovies(MovieList pMovieList){
+        loadedMovies = pMovieList;
+    }
 
     public void displayScreeningRooms(){
         screeningRoomListView.getSelectionModel().selectFirst();
         screeningRoomListView.getItems().clear();
-        screeningRoomListView.getItems().setAll(aListStorage.getScreeningRoomList().composeList());
+        screeningRoomListView.getItems().setAll(aScreeningRoomList.composeList());
+    }
+    @FXML
+    public void onAddClick(){
+        String id = roomIDTextField.getText();
+        int seats = Integer.parseInt(seatsTextField.getText());
+        ScreeningRoom addedScreeningRoom = new ScreeningRoom(seats, id);
+        aScreeningRoomList.add(addedScreeningRoom);
+        displayScreeningRooms();
+    }
+
+    @FXML
+    public void onUpdateClick(){
+        String id = roomIDTextField.getText();
+        int seats = Integer.parseInt(seatsTextField.getText());
+        ScreeningRoom update = new ScreeningRoom(seats, id);
+        aScreeningRoomList.update(screeningRoomListView.getSelectionModel().getSelectedIndex(), update);
+        displayScreeningRooms();
+
+    }
+
+    @FXML
+    public void onDeleteClick(){
+        aScreeningRoomList.delete(screeningRoomListView.getSelectionModel().getSelectedIndex());
+        displayScreeningRooms();
     }
 }

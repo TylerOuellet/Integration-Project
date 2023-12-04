@@ -44,13 +44,15 @@ public class ManagerMenuController implements Initializable {
     @FXML
     private ManagerScreeningRoomController nestedScreeningRoomViewController;
 
+    public MovieList aMovieList = new MovieList();
+
     @FXML
     void screeningRoomSwitch (Event event){
         if (screeningRoomTab.isSelected()){
             if (nestedScreeningRoomViewController != null){
                 this.nestedScreeningRoomViewController.bindToManagerMenuController(this);
                 nestedScreeningRoomViewController.displayScreeningRooms();
-
+                nestedScreeningRoomViewController.importMovies(aMovieList);
             }
 
         }
@@ -63,6 +65,7 @@ public class ManagerMenuController implements Initializable {
                 this.nestedMoviesViewController.bindTOManagerMenuController(this);
                 System.out.print("ManagerMoviesController set successfully");
                 nestedMoviesViewController.displayMovies();
+                aMovieList = nestedMoviesViewController.export();
             }
         }
     }

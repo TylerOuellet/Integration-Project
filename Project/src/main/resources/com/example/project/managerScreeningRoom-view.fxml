@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.ManagerScreeningRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.ManagerScreeningRoomController">
    <children>
       <Text layoutX="117.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Screening Rooms">
          <font>
@@ -17,9 +17,9 @@
       </Text>
       <Text layoutX="14.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Screening Room ID:" />
       <TextField fx:id="roomIDTextField" layoutX="125.0" layoutY="291.0" prefHeight="26.0" prefWidth="161.0" />
-      <Button fx:id="addButton" layoutX="125.0" layoutY="366.0" mnemonicParsing="false" text="Add" />
-      <Button fx:id="modifyButton" layoutX="172.0" layoutY="366.0" mnemonicParsing="false" text="Modify" />
-      <Button fx:id="deleteButton" layoutX="235.0" layoutY="366.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="addButton" layoutX="125.0" layoutY="366.0" mnemonicParsing="false" onAction="#onAddClick" text="Add" />
+      <Button fx:id="modifyButton" layoutX="172.0" layoutY="366.0" mnemonicParsing="false" onAction="#onUpdateClick" text="Modify" />
+      <Button fx:id="deleteButton" layoutX="235.0" layoutY="366.0" mnemonicParsing="false" onAction="#onDeleteClick" text="Delete" />
       <ListView fx:id="screeningRoomListView" layoutX="11.0" layoutY="82.0" prefHeight="200.0" prefWidth="334.0" />
       <TextField fx:id="seatsTextField" layoutX="125.0" layoutY="329.0" prefHeight="25.0" prefWidth="161.0" />
       <Label layoutX="37.0" layoutY="333.0" text="Available Seats:" />
