@@ -17,6 +17,9 @@ public class Showtime implements ManagementCollection {
     /** Which screening room used during the showtime. */
     private ScreeningRoom aScreeningRoom;
 
+    private int aTicketsSold = 0;
+
+
 
     /**
      * Constructor.
@@ -60,6 +63,14 @@ public class Showtime implements ManagementCollection {
     }
 
     /**
+     * getter for tickets sold
+     * @return tickets sold
+     */
+    public int getTicketsSold(){
+        return aTicketsSold;
+    }
+
+    /**
      * Setter of the shown movie.
      * @param pShownMovie The movie shown.
      * @throws IllegalArgumentException if the movie shown is null.
@@ -91,5 +102,13 @@ public class Showtime implements ManagementCollection {
         } else {
             throw new IllegalArgumentException("The screening room cannot be null.");
         }
+    }
+
+    /**
+     * used to add sales to tickets sold.
+     * @param pSold the amount of sales to be added.
+     */
+    public void addSales(int pSold){
+        aTicketsSold = aTicketsSold + pSold;
     }
 }

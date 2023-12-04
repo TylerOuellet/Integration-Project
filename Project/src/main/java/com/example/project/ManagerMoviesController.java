@@ -34,11 +34,10 @@ public class ManagerMoviesController implements Initializable {
     private TextField runtimeTextField;
 
 
-    public MovieList loadedMovies = new MovieList();
+    public MovieList loadedMovies = MovieList.getInstance();
 
     private ManagerMenuController aManagerMenuController;
 
-    ListStorage aListStorage = new ListStorage();
 
     public void bindTOManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
@@ -50,7 +49,7 @@ public class ManagerMoviesController implements Initializable {
         moviesListView.getItems().clear();
 
        // moviesListView.getItems().removeAll();
-        moviesListView.getItems().setAll(aListStorage.getMovieList().composeList());
+        moviesListView.getItems().setAll(loadedMovies.composeList());
         moviesListView.getSelectionModel().selectFirst();
        // moviesListView.getSelectionModel().selectFirst();
         moviesListView.refresh();
@@ -62,14 +61,14 @@ public class ManagerMoviesController implements Initializable {
         Genre selectedGenre = genreChoiceBox.getValue();
         int runtime = Integer.parseInt(runtimeTextField.getText());
         Movie newMovie = new Movie(movieTitle, selectedGenre, runtime);
-        aListStorage.getMovieList().add(newMovie);
+        loadedMovies.add(newMovie);
         moviesListView.getItems().clear();
         displayMovies();
     }
 
     @FXML
     void onDeleteClick(){
-        aListStorage.getMovieList().delete(moviesListView.getSelectionModel().getSelectedIndex());
+        loadedMovies.delete(moviesListView.getSelectionModel().getSelectedIndex());
         moviesListView.getItems().clear();
         displayMovies();
     }
@@ -77,30 +76,20 @@ public class ManagerMoviesController implements Initializable {
     void onUpdateClick(){
         int runtime = Integer.parseInt(runtimeTextField.getText());
         Movie updatedMovie = new Movie(movieNameTextfield.getText(), genreChoiceBox.getValue(), runtime);
-        aListStorage.getMovieList().update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
+        loadedMovies.update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
         moviesListView.getItems().clear();
         displayMovies();
-    }
-    MovieList export(){
-        return loadedMovies;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Movie test1 = new Movie("test1", Genre.Action, 123 );
-        Movie test2 = new Movie("test2", Genre.Action, 123 );
-        Movie test3 = new Movie("test3", Genre.Action, 123 );
+      //  Movie test1 = new Movie("test1", Genre.Action, 123 );
+       // Movie test2 = new Movie("test2", Genre.Action, 123 );
+       // Movie test3 = new Movie("test3", Genre.Action, 123 );
 
-        loadedMovies.add(test1);
-        loadedMovies.add(test2);
-
-
-
-
-
-       aListStorage.getMovieList().add(test1);
-       aListStorage.getMovieList().add(test2);
-       aListStorage.getMovieList().add(test3);
+       // loadedMovies.add(test1);
+       // loadedMovies.add(test2);
+        //loadedMovies.add(test3);
 
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);
@@ -108,9 +97,9 @@ public class ManagerMoviesController implements Initializable {
         moviesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                movieNameTextfield.setText(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
-                runtimeTextField.setText(String.valueOf(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
-                genreChoiceBox.setValue(aListStorage.getMovieList().getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
+                movieNameTextfield.setText(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
+                runtimeTextField.setText(String.valueOf(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
+                genreChoiceBox.setValue(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
             }
         });
     }

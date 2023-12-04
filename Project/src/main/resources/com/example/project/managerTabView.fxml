@@ -5,14 +5,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="515.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.ManagerMenuController">
+<AnchorPane prefHeight="515.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.ManagerMenuController">
    <children>
       <TabPane layoutY="-3.0" prefHeight="523.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="showtimeTab" text="Showtimes">
+            <Tab fx:id="movieTab" onSelectionChanged="#test" text="Movies">
+              <content>
+                  <HBox alignment="CENTER">
+                  <fx:include fx:id="nestedMoviesView" source="managerMovies-view.fxml" />
+                  </HBox>
+              </content>
+            </Tab>
+          <Tab fx:id="showtimeTab" onSelectionChanged="#onShowtimeSwitch" text="Showtimes">
             <content>
                 <HBox alignment="CENTER" prefHeight="493.0" prefWidth="600.0">
-                <fx:include fx:id="nestedShowtimesView" source="managerShowtimes-view.fxml" />
+                <fx:include fx:id="nestedShowtimeView" source="managerShowtimes-view.fxml" />
                 </HBox>
             </content>
           </Tab>
@@ -23,14 +30,7 @@
                 </HBox>
             </content>
           </Tab>
-            <Tab fx:id="movieTab" onSelectionChanged="#test" text="Movies">
-              <content>
-                  <HBox alignment="CENTER">
-                  <fx:include fx:id="nestedMoviesView" source="managerMovies-view.fxml" />
-                  </HBox>
-              </content>
-            </Tab>
-            <Tab fx:id="statsTab" text="Statistics">
+            <Tab fx:id="statsTab" onSelectionChanged="#onStatsSwich" text="Statistics">
               <content>
                   <HBox alignment="CENTER">
                   <fx:include fx:id="nestedStatsView" source="managerReports-view.fxml" />

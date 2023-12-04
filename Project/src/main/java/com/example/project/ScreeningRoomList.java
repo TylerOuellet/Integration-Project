@@ -8,6 +8,10 @@ public class ScreeningRoomList {
 
     private final List<ScreeningRoom> aScreeningRooms = new ArrayList<>();
 
+    private static ScreeningRoomList aInstance;
+
+    private ScreeningRoomList() {}
+
     public ScreeningRoom getIndex(int pIndex){
         if(pIndex > 1){
             return this.aScreeningRooms.get(pIndex);
@@ -34,6 +38,12 @@ public class ScreeningRoomList {
             listed.add(currentScreeningRoom.getRoomID());
         }
         return listed;
+    }
 
+    public static ScreeningRoomList getInstance(){
+        if (aInstance == null){
+            aInstance = new ScreeningRoomList();
+        }
+        return aInstance;
     }
 }

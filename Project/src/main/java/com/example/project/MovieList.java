@@ -7,7 +7,11 @@ import java.util.List;
 public class MovieList {
     String aName;
 
-    private final List<Movie> aMovieList = new ArrayList<Movie>();
+    private List<Movie> aMovieList = new ArrayList<Movie>();
+
+    private static MovieList aInstance;
+
+    private MovieList() {}
 
     public Movie getIndex(int selectedIndex){
         if (selectedIndex > -1) {
@@ -34,10 +38,25 @@ public class MovieList {
         }
         return listed;
     }
+
+    public LinkedList<String> composeSalesList(){
+        LinkedList<String> listed = new LinkedList<>();
+        for (Movie currentMovie : aMovieList){
+            listed.add(currentMovie.getTitle() + "Tickets Sold: "+ currentMovie.getTicketSales());
+        }
+        return listed;
+    }
     public void delete(int pIndex){
         this.aMovieList.remove(pIndex);
     }
     public void update(int pIndex, Movie pMovie){
         this.aMovieList.set(pIndex,pMovie);
+    }
+
+    public static MovieList getInstance(){
+        if (aInstance == null){
+            aInstance = new MovieList();
+        }
+        return aInstance;
     }
 }

@@ -21,24 +21,22 @@ public class ManagerScreeningRoomController implements Initializable {
     @FXML
     private TextField seatsTextField;
 
-    ListStorage aListStorage = new ListStorage();
 
     private ManagerMenuController aManagerMenuController;
 
-    MovieList loadedMovies = new MovieList();
 
-    ScreeningRoomList aScreeningRoomList = new ScreeningRoomList();
+    ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ScreeningRoom test1 = new  ScreeningRoom(123, "QWE");
-        ScreeningRoom test2 = new  ScreeningRoom(123, "QWE");
-        ScreeningRoom test3 = new  ScreeningRoom(123, "QWE");
+       // ScreeningRoom test1 = new  ScreeningRoom(123, "QWE");
+       // ScreeningRoom test2 = new  ScreeningRoom(123, "QWE");
+       // ScreeningRoom test3 = new  ScreeningRoom(123, "QWE");
 
-        aScreeningRoomList.add(test1);
-        aScreeningRoomList.add(test2);
-        aScreeningRoomList.add(test3);
+       // aScreeningRoomList.add(test1);
+       // aScreeningRoomList.add(test2);
+       // aScreeningRoomList.add(test3);
 
         screeningRoomListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -52,9 +50,6 @@ public class ManagerScreeningRoomController implements Initializable {
 
     public void bindToManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
-    }
-    public void importMovies(MovieList pMovieList){
-        loadedMovies = pMovieList;
     }
 
     public void displayScreeningRooms(){

@@ -12,6 +12,8 @@ public class Movie implements ManagementCollection{
 
     private int aRuntime;
 
+    private int aTicketSales = 0;
+
     /**
      * Making the new Movie object with the title, genre, and runtime.
      *
@@ -79,11 +81,27 @@ public class Movie implements ManagementCollection{
     }
 
     /**
+     * Getter for ticket sales.
+     * @return ticket sales.
+     */
+    int getTicketSales(){
+        return aTicketSales;
+    }
+
+    /**
      * Returns the runtime of the movie
      * @return The runtime in minutes
      */
     int getRuntime(){
         return aRuntime;
+    }
+
+    /**
+     * Method use to add sales to a movie's ticket sales.
+     * @param pSales the # of tickets to be added
+     */
+    void addSales(int pSales){
+        aTicketSales = aTicketSales + pSales;
     }
 
 }
