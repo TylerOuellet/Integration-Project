@@ -1,13 +1,19 @@
 package com.example.project;
 
+import java.io.Serializable;
+
 /**
  * This User class represents a basic user in the system.
  * It includes functionality for managing the user's password, username, and manager status.
  */
-public abstract class User {
+public abstract class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String aPassword;
 
     private String aUsername;
+
+    private String aEmail;
 
     private Boolean aIsManager;
 
@@ -53,6 +59,18 @@ public abstract class User {
      */
     String getUsername(){
         return aUsername;
+    }
+
+    void setEmail(String pEmail){
+        if (pEmail.contains("@") && !pEmail.startsWith("@") && !pEmail.endsWith("@")){
+            this.aEmail = pEmail;
+        } else {
+            throw new IllegalArgumentException("Incorrect email format, use abcdef@ghijkl");
+        }
+    }
+
+    String getEmail(){
+        return aEmail;
     }
 
     /**

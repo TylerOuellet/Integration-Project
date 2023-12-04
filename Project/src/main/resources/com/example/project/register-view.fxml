@@ -8,7 +8,8 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="com.example.project.RegisterController">
    <children>
       <Text layoutX="122.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
          <font>
@@ -20,13 +21,13 @@
       <Text layoutX="54.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name:" />
       <Text layoutX="37.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address:" />
       <Text layoutX="59.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <TextField fx:id="usernameTextfield" layoutX="114.0" layoutY="54.0" />
-      <TextField fx:id="firstnameTextfield" layoutX="114.0" layoutY="88.0" />
-      <TextField fx:id="lastnameTextfield" layoutX="114.0" layoutY="123.0" />
-      <TextField fx:id="emailTextfield" layoutX="114.0" layoutY="158.0" />
-      <TextField fx:id="passwordTextfield" layoutX="114.0" layoutY="192.0" />
-      <Button layoutX="114.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Register" />
-      <Button layoutX="219.0" layoutY="247.0" mnemonicParsing="false" text="Close" />
+      <TextField fx:id="usernameTextField" layoutX="114.0" layoutY="54.0" />
+      <TextField fx:id="firstnameTextField" layoutX="114.0" layoutY="88.0" />
+      <TextField fx:id="lastnameTextField" layoutX="114.0" layoutY="123.0" />
+      <TextField fx:id="emailTextField" layoutX="114.0" layoutY="158.0" />
+      <TextField fx:id="passwordTextField" layoutX="114.0" layoutY="192.0" />
+      <Button layoutX="114.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="Register" onAction="#registerButtonClicked"/>
+      <Button layoutX="219.0" layoutY="247.0" mnemonicParsing="false" text="Close" onAction="#closeButtonClicked"/>
       <CheckBox layoutX="114.0" layoutY="221.0" mnemonicParsing="false" text="Show password" />
    </children>
 </AnchorPane>
