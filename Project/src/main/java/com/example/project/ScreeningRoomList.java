@@ -1,11 +1,9 @@
 package com.example.project;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class ScreeningRoomList implements Serializable {
+public class ScreeningRoomList implements Serializable, Iterable<ScreeningRoom> {
 
     private final List<ScreeningRoom> aScreeningRooms = new ArrayList<>();
 
@@ -75,5 +73,35 @@ public class ScreeningRoomList implements Serializable {
             aInstance = new ScreeningRoomList();
         }
         return aInstance;
+    }
+
+    private class ScreeningRoomIterator implements Iterator<ScreeningRoom>{
+        private int index = 0;
+
+        @Override
+        public boolean hasNext(){
+            return index < aScreeningRooms.size();
+        }
+
+        @Override
+        public ScreeningRoom next(){
+            if (hasNext()){
+                return aScreeningRooms.get(index++);
+            } else {
+                throw new NoSuchElementException("error in iterating");
+            }
+
+        }
+    }
+
+    @Override
+    public Iterator<ScreeningRoom> iterator(){
+        return new ScreeningRoomIterator();
+    }
+
+    public static void setInstance(ScreeningRoomList pScreeningRoomList){
+        for (ScreeningRoom currentScreeningRoom : pScreeningRoomList){
+            aInstance.add(currentScreeningRoom);
+        }
     }
 }
