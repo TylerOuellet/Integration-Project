@@ -14,7 +14,6 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="welcomeText" layoutX="180.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, [user]!" />
       <Text layoutX="14.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies" />
       <Text layoutX="270.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Showtimes" />
       <Text layoutX="14.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tickets:" />
