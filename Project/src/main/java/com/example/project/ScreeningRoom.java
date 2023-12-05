@@ -1,11 +1,13 @@
 package com.example.project;
 
 
+import java.io.Serializable;
+
 /**
  * Represents the screening room in the movie theater.
  * Used to store information about the screening room.
  */
-public class ScreeningRoom implements ManagementCollection {
+public class ScreeningRoom implements ManagementCollection, Serializable {
 
     /** The remaining seats in the screening room. */
     private int aRemainingSeats;

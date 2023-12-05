@@ -1,5 +1,6 @@
 package com.example.project;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Represents the showtime in the movie theater for the application.
  * Used to store information about the showtime.
  */
-public class Showtime implements ManagementCollection {
+public class Showtime implements ManagementCollection, Serializable {
 
     /** The date and the time. */
     private LocalDateTime aShowTime;
@@ -61,6 +62,14 @@ public class Showtime implements ManagementCollection {
     }
 
     /**
+     * getter for tickets sold
+     * @return tickets sold
+     */
+    public int getTicketsSold(){
+        return aTicketsSold;
+    }
+
+    /**
      * Setter of the shown movie.
      * @param pShownMovie The movie shown.
      * @throws IllegalArgumentException if the movie shown is null.
@@ -94,8 +103,15 @@ public class Showtime implements ManagementCollection {
         }
     }
 
-
-    @Override
+    /**
+     * used to add sales to tickets sold.
+     * @param pSold the amount of sales to be added.
+     */
+    public void addSales(int pSold){
+        aTicketsSold = aTicketsSold + pSold;
+    }
+    
+        @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return getShowTime().format(formatter);
