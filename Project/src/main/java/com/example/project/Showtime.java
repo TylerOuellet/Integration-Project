@@ -20,6 +20,7 @@ public class Showtime implements ManagementCollection, Serializable {
     private ScreeningRoom aScreeningRoom;
 
 
+    private int aTicketsSold;
     /**
      * Constructor.
      * @param pShowTime The date and time.

@@ -1,5 +1,5 @@
 package com.example.project;
 
 public enum Genre {
-    Action,
+    Action, Sciencefiction, Romance, Comedy,
 }

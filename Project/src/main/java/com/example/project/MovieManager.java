@@ -15,13 +15,13 @@ public class MovieManager {
     public MovieManager() {
         movieShowTimes = new HashMap<>();
 
-        addMovie("Hunger Games", Genre.ACTION, 120, LocalDateTime.of(2023, 1, 1, 12, 0), 30, "Room A");
-        addMovie("Hunger Games", Genre.ACTION, 120, LocalDateTime.of(2023, 1, 1, 15, 30), 50, "Room B");
-        addMovie("Inception", Genre.SCIENCEFICTION, 150, LocalDateTime.of(2023, 1, 1, 14, 0), 40, "Room C");
-        addMovie("Titanic", Genre.ROMANCE, 195, LocalDateTime.of(2023, 1, 1, 18, 30), 30, "Room A");
-        addMovie("Titanic", Genre.ROMANCE, 195, LocalDateTime.of(2023, 1, 1, 20, 30), 50, "Room B");
-        addMovie("The Grinch", Genre.COMEDY,104, LocalDateTime.of(2023, 12, 24, 13, 0), 80, "Room C");
-        addMovie("The Grinch", Genre.COMEDY,104, LocalDateTime.of(2023, 12, 24, 15, 30), 80, "Room C");
+        addMovie("Hunger Games", Genre.Action, 120, LocalDateTime.of(2023, 1, 1, 12, 0), 30, "Room A");
+        addMovie("Hunger Games", Genre.Action, 120, LocalDateTime.of(2023, 1, 1, 15, 30), 50, "Room B");
+        addMovie("Inception", Genre.Sciencefiction, 150, LocalDateTime.of(2023, 1, 1, 14, 0), 40, "Room C");
+        addMovie("Titanic", Genre.Romance, 195, LocalDateTime.of(2023, 1, 1, 18, 30), 30, "Room A");
+        addMovie("Titanic", Genre.Romance, 195, LocalDateTime.of(2023, 1, 1, 20, 30), 50, "Room B");
+        addMovie("The Grinch", Genre.Comedy,104, LocalDateTime.of(2023, 12, 24, 13, 0), 80, "Room C");
+        addMovie("The Grinch", Genre.Comedy,104, LocalDateTime.of(2023, 12, 24, 15, 30), 80, "Room C");
     }
 
     /**
