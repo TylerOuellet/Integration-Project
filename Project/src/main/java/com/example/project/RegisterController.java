@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -41,16 +43,26 @@ public class RegisterController {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
 
-        if (userService.isUsernameTaken(username)) {
+        if (username.isBlank() || firstname.isBlank() || lastname.isBlank() || email.isBlank() || password.isBlank()) {
+            showAlert("All fields must be filled in.");
             return;
         }
 
-        userService.registerUser(username, firstname, lastname, email, password);
+        if (userService.isUsernameTaken(username)) {
+            showAlert("The username is already taken.");
+            return;
+        }
 
-        // Save the updated user data
-        UserDataStorage.saveUsers(userService.getUsers());
+        try {
+            userService.registerUser(username, firstname, lastname, email, password);
 
-        switchToLoginView(event);
+            // Save the updated user data
+            UserDataStorage.saveUsers(userService.getUsers());
+
+            switchToLoginView(event);
+        } catch (IllegalArgumentException e) {
+            showAlert(e.getMessage());
+        }
     }
 
     @FXML
@@ -66,5 +78,13 @@ public class RegisterController {
         stage.setTitle("Manager");
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
