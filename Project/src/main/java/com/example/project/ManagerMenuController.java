@@ -2,14 +2,11 @@ package com.example.project;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -52,7 +49,7 @@ public class ManagerMenuController implements Initializable {
     @FXML
     private ManagerReportsController nestedStatsViewController;
 
-    private MovieList loadedMovies = MovieList.getInstance();
+    private MovieList aMovieList = MovieList.getInstance();
 
     private ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
 
@@ -106,34 +103,69 @@ public class ManagerMenuController implements Initializable {
             }
         }
     }
+    void save(){
+        System.out.println("Saved!");
+        try(FileOutputStream fs = new FileOutputStream("Lists.bin")){
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+
+            os.writeObject(aMovieList);
+            os.writeObject(aScreeningRoomList);
+            os.writeObject(aShowtimeList);
+
+            os.close();
+
+        } catch (IOException e){
+            e.fillInStackTrace();
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ScreeningRoom test1 = new  ScreeningRoom(123, "QWE");
-        ScreeningRoom test2 = new  ScreeningRoom(123, "QWE");
-        ScreeningRoom test3 = new  ScreeningRoom(123, "QWE");
+        File listBin = new File("Lists.bin");
+        if (listBin.exists()){
+            try(FileInputStream fs = new FileInputStream("Lists.bin")){
+                ObjectInputStream os = new ObjectInputStream(fs);
+                aMovieList = (MovieList) os.readObject();
+                aScreeningRoomList = (ScreeningRoomList)  os.readObject();
+                aShowtimeList = (ShowtimeList) os.readObject();
 
-        aScreeningRoomList.add(test1);
-        aScreeningRoomList.add(test2);
-        aScreeningRoomList.add(test3);
 
-        Movie mtest1 = new Movie("test1", Genre.Action, 123 );
-        Movie mtest2 = new Movie("test2", Genre.Action, 123 );
-        Movie mtest3 = new Movie("test3", Genre.Action, 123 );
 
-        loadedMovies.add(mtest1);
-        loadedMovies.add(mtest2);
-        loadedMovies.add(mtest3);
+                nestedMoviesViewController.displayMovies();
+                System.out.println("Movies: " + aMovieList.composeList());
 
-        Showtime stest1 = new Showtime(LocalDateTime.parse("2023-12-04 16:00", formatter), MovieList.getInstance().getIndex(0), ScreeningRoomList.getInstance().getIndex(0));
-        Showtime stest2 = new Showtime(LocalDateTime.parse("2023-12-04 12:00", formatter), MovieList.getInstance().getIndex(1), ScreeningRoomList.getInstance().getIndex(1));
-        Showtime stest3 = new Showtime(LocalDateTime.parse("2023-12-04 01:30", formatter), MovieList.getInstance().getIndex(2), ScreeningRoomList.getInstance().getIndex(2));
+            } catch (IOException e){
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            ScreeningRoom test1 = new ScreeningRoom(123, "QWE");
+            ScreeningRoom test2 = new ScreeningRoom(123, "QWE");
+            ScreeningRoom test3 = new ScreeningRoom(123, "QWE");
 
-        aShowtimeList.add(stest1);
-        aShowtimeList.add(stest2);
-        aShowtimeList.add(stest3);
+            aScreeningRoomList.add(test1);
+            aScreeningRoomList.add(test2);
+            aScreeningRoomList.add(test3);
 
-        nestedMoviesViewController.displayMovies();
+            Movie mtest1 = new Movie("test1", Genre.Action, 123);
+            Movie mtest2 = new Movie("test2", Genre.Action, 123);
+            Movie mtest3 = new Movie("test3", Genre.Action, 123);
+
+            aMovieList.add(mtest1);
+            aMovieList.add(mtest2);
+            aMovieList.add(mtest3);
+
+            Showtime stest1 = new Showtime(LocalDateTime.parse("2023-12-04 16:00", formatter), MovieList.getInstance().getIndex(0), ScreeningRoomList.getInstance().getIndex(0));
+            Showtime stest2 = new Showtime(LocalDateTime.parse("2023-12-04 12:00", formatter), MovieList.getInstance().getIndex(1), ScreeningRoomList.getInstance().getIndex(1));
+            Showtime stest3 = new Showtime(LocalDateTime.parse("2023-12-04 01:30", formatter), MovieList.getInstance().getIndex(2), ScreeningRoomList.getInstance().getIndex(2));
+
+            aShowtimeList.add(stest1);
+            aShowtimeList.add(stest2);
+            aShowtimeList.add(stest3);
+
+            nestedMoviesViewController.displayMovies();
+        }
 
     }
 

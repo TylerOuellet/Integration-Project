@@ -1,12 +1,13 @@
 package com.example.project;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ShowtimeList {
-    private final List<Showtime> aShowTimeList = new ArrayList<Showtime>();
+public class ShowtimeList implements Serializable {
+    private final List<Showtime> aShowTimeList = new ArrayList<>();
 
     private static ShowtimeList aInstance;
     /**

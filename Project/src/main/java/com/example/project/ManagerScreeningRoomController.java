@@ -30,14 +30,6 @@ public class ManagerScreeningRoomController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // ScreeningRoom test1 = new  ScreeningRoom(123, "QWE");
-       // ScreeningRoom test2 = new  ScreeningRoom(123, "QWE");
-       // ScreeningRoom test3 = new  ScreeningRoom(123, "QWE");
-
-       // aScreeningRoomList.add(test1);
-       // aScreeningRoomList.add(test2);
-       // aScreeningRoomList.add(test3);
-
         screeningRoomListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -81,4 +73,5 @@ public class ManagerScreeningRoomController implements Initializable {
         aScreeningRoomList.delete(screeningRoomListView.getSelectionModel().getSelectedIndex());
         displayScreeningRooms();
     }
+
 }

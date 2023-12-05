@@ -81,16 +81,13 @@ public class ManagerMoviesController implements Initializable {
         displayMovies();
     }
 
+    @FXML
+    void onSaveClick(){
+        aManagerMenuController.save();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      //  Movie test1 = new Movie("test1", Genre.Action, 123 );
-       // Movie test2 = new Movie("test2", Genre.Action, 123 );
-       // Movie test3 = new Movie("test3", Genre.Action, 123 );
-
-       // loadedMovies.add(test1);
-       // loadedMovies.add(test2);
-        //loadedMovies.add(test3);
-
         for(Genre genre : Genre.values()){
             genreChoiceBox.getItems().add(genre);
         }
