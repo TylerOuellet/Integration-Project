@@ -1,10 +1,12 @@
 package com.example.project;
 
+import java.io.Serializable;
+
 /**
  * Movie class that represents a movie into the app.
  * It adds the ManagementCollection interface.
  */
-public class Movie implements ManagementCollection{
+public class Movie implements ManagementCollection, Serializable {
     private String aTitle;
 
     // maybe change this to string

@@ -1,12 +1,13 @@
 package com.example.project;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * Represents the showtime in the movie theater for the application.
  * Used to store information about the showtime.
  */
-public class Showtime implements ManagementCollection {
+public class Showtime implements ManagementCollection, Serializable {
 
     /** The date and the time. */
     private LocalDateTime aShowTime;
