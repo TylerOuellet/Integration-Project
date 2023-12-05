@@ -111,9 +111,9 @@ public class MovieList implements Serializable, Iterable<Movie> {
         return new MovieIterator();
     }
 
-    public void addAll(MovieList pMovieList){
+    public static void setInstance(MovieList pMovieList){
         for (Movie currentMovie : pMovieList){
-            aMovieList.add(currentMovie);
+            aInstance.add(currentMovie);
         }
     }
 

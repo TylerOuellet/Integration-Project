@@ -128,7 +128,9 @@ public class ManagerMenuController implements Initializable {
                 aMovieList = (MovieList) os.readObject();
                 aScreeningRoomList = (ScreeningRoomList)  os.readObject();
                 aShowtimeList = (ShowtimeList) os.readObject();
-
+                MovieList.setInstance(aMovieList);
+                ScreeningRoomList.setInstance(aScreeningRoomList);
+                ShowtimeList.setInstance(aShowtimeList);
 
 
                 nestedMoviesViewController.displayMovies();

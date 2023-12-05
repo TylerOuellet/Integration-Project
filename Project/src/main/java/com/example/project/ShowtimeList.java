@@ -2,18 +2,12 @@ package com.example.project;
 
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class ShowtimeList implements Serializable {
+public class ShowtimeList implements Serializable, Iterable<Showtime> {
     private final List<Showtime> aShowTimeList = new ArrayList<>();
 
     private static ShowtimeList aInstance;
-    /**
-     * formatter used for formatting a Showtime's date and time
-     */
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Singleton Constructor
@@ -39,7 +33,7 @@ public class ShowtimeList implements Serializable {
     public LinkedList<String> composeList(){
         LinkedList<String> listed = new LinkedList<>();
         for (Showtime currentShowtime : aShowTimeList){
-            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(formatter));
+            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
         }
         return listed;
@@ -52,7 +46,7 @@ public class ShowtimeList implements Serializable {
     public LinkedList<String> composeSalesList(){
         LinkedList<String> listed = new LinkedList<>();
         for (Showtime currentShowtime : aShowTimeList){
-            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(formatter) + "Tickets Sold: " + currentShowtime.getTicketsSold());
+            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "Tickets Sold: " + currentShowtime.getTicketsSold());
 
         }
         return listed;
@@ -93,5 +87,45 @@ public class ShowtimeList implements Serializable {
         }
         return aInstance;
     }
+
+    private class ShowtimeIterator implements Iterator<Showtime>{
+
+        private int index = 0;
+
+        public boolean hasNext(){
+            return index < aShowTimeList.size();
+        }
+
+        @Override
+        public Showtime next(){
+            if(hasNext()){
+                return aShowTimeList.get(index++);
+            }
+            else {
+                throw new NoSuchElementException("error in iterating");
+            }
+        }
+
+
+
+
+
+    }
+
+    @Override
+    public Iterator<Showtime> iterator(){
+        return new ShowtimeIterator();
+    }
+
+    public static void setInstance(ShowtimeList pShowtimeList){
+        for (Showtime currentShowtime : pShowtimeList){
+            aInstance.add(currentShowtime);
+        }
+    }
+
+
+
+
+
 
 }
