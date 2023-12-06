@@ -68,7 +68,7 @@ public class LoginController {
         Stage stage = (Stage) usernameTextField.getScene().getWindow();
         try {
             if (isManager) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("managerMenu-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("managerTabView.fxml"));
                 Parent root = loader.load();
 
                 stage.setTitle("Manager");
