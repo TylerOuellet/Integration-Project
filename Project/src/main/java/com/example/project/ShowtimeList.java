@@ -105,11 +105,6 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
                 throw new NoSuchElementException("error in iterating");
             }
         }
-
-
-
-
-
     }
 
     @Override
@@ -119,13 +114,7 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
 
     public static void setInstance(ShowtimeList pShowtimeList){
         for (Showtime currentShowtime : pShowtimeList){
-            aInstance.add(currentShowtime);
+            getInstance().add(currentShowtime);
         }
     }
-
-
-
-
-
-
 }

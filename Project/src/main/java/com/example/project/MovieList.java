@@ -106,6 +106,7 @@ public class MovieList implements Serializable, Iterable<Movie> {
         }
 
     }
+
     @Override
     public Iterator<Movie> iterator(){
         return new MovieIterator();
@@ -113,10 +114,7 @@ public class MovieList implements Serializable, Iterable<Movie> {
 
     public static void setInstance(MovieList pMovieList){
         for (Movie currentMovie : pMovieList){
-            aInstance.add(currentMovie);
+            getInstance().add(currentMovie);
         }
     }
-
-
-
 }

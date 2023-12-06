@@ -101,7 +101,7 @@ public class ScreeningRoomList implements Serializable, Iterable<ScreeningRoom> 
 
     public static void setInstance(ScreeningRoomList pScreeningRoomList){
         for (ScreeningRoom currentScreeningRoom : pScreeningRoomList){
-            aInstance.add(currentScreeningRoom);
+            getInstance().add(currentScreeningRoom);
         }
     }
 }

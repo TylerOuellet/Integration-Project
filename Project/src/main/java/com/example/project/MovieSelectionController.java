@@ -2,6 +2,7 @@ package com.example.project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,13 +10,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class MovieSelectionController {
+public class MovieSelectionController implements Initializable {
 
     @FXML
     Button buyTicketsButton;
@@ -32,16 +35,20 @@ public class MovieSelectionController {
     @FXML
     ListView<Showtime> showtimesListView;
 
-    private MovieManager movieManager;
+    public MovieList loadedMovies = MovieList.getInstance();
+    public List<Showtime> aShowTimesList = new ArrayList<>();
 
     /**
      * When the Controller opens
      */
-    public void initialize() {
-        movieManager = new MovieManager();
-        moviesListView.getItems().addAll(movieManager.getAllMovieTitles());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        DataInitializer.initializer();
+
+        moviesListView.getItems().setAll(loadedMovies.composeList());
         moviesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            updateShowTimesListView(newValue);
+        updateShowTimesListView(newValue);
         });
     }
 
@@ -51,8 +58,12 @@ public class MovieSelectionController {
      */
     private void updateShowTimesListView(String selectedMovie) {
         showtimesListView.getItems().clear();
-        List<Showtime> showTimesForSelectedMovie = movieManager.getShowTimesForMovie(selectedMovie);
-        showtimesListView.getItems().addAll(showTimesForSelectedMovie);
+        ShowtimeList showtimeList = ShowtimeList.getInstance();
+        for (Showtime showtime : showtimeList) {
+            if (showtime.getShownMovie().getTitle().equals(selectedMovie)) {
+                showtimesListView.getItems().add(showtime);
+            }
+        }
     }
 
     /**
