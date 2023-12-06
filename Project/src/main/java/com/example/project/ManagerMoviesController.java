@@ -1,5 +1,6 @@
 package com.example.project;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -57,13 +58,25 @@ public class ManagerMoviesController implements Initializable {
 
     @FXML
     void onAddClick(){
-        String movieTitle = movieNameTextfield.getText();
-        Genre selectedGenre = genreChoiceBox.getValue();
-        int runtime = Integer.parseInt(runtimeTextField.getText());
-        Movie newMovie = new Movie(movieTitle, selectedGenre, runtime);
-        loadedMovies.add(newMovie);
-        moviesListView.getItems().clear();
-        displayMovies();
+        try {
+
+
+            String movieTitle = movieNameTextfield.getText();
+            Genre selectedGenre = genreChoiceBox.getValue();
+            int runtime = Integer.parseInt(runtimeTextField.getText());
+            Movie newMovie = new Movie(movieTitle, selectedGenre, runtime);
+            loadedMovies.add(newMovie);
+            moviesListView.getItems().clear();
+            displayMovies();
+
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Movie title cannot exceed 255 characters or be 0
+                    Runtime is in minutes and cannot exceed 1440 minutes (1 day) or be 0 or less
+                    You must select a genre""", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -74,16 +87,27 @@ public class ManagerMoviesController implements Initializable {
     }
     @FXML
     void onUpdateClick(){
-        int runtime = Integer.parseInt(runtimeTextField.getText());
-        Movie updatedMovie = new Movie(movieNameTextfield.getText(), genreChoiceBox.getValue(), runtime);
-        loadedMovies.update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
-        moviesListView.getItems().clear();
-        displayMovies();
+        try {
+            int runtime = Integer.parseInt(runtimeTextField.getText());
+            Movie updatedMovie = new Movie(movieNameTextfield.getText(), genreChoiceBox.getValue(), runtime);
+            loadedMovies.update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
+            moviesListView.getItems().clear();
+            displayMovies();
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Movie title cannot exceed 255 characters or be empty
+                    Runtime is in minutes and cannot exceed 1440 minutes (1 day) or be 0 or less
+                    You must select a genre""", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML
     void onSaveClick(){
         aManagerMenuController.save();
+        Platform.exit();
+        System.exit(0);
     }
 
     @Override

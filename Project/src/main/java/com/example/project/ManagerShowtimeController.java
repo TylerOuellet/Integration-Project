@@ -1,10 +1,11 @@
 package com.example.project;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -44,6 +45,15 @@ public class ManagerShowtimeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        showtimesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                showtimeTextField.setText(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getShowTime().format(formatter));
+                movieChoiceBox.setValue(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getShownMovie().getTitle());
+                screeningRoomChoiceBox.setValue(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getScreeningRoom().getRoomID());
+
+            }
+        });
 
     }
 
@@ -88,14 +98,23 @@ public class ManagerShowtimeController implements Initializable {
     }
     @FXML
     void onAddClick(){
-        LocalDateTime dateTimeInput = LocalDateTime.parse(showtimeTextField.getText(), formatter);
-        Movie movieSelection = aMovieList.getIndex(movieChoiceBox.getSelectionModel().getSelectedIndex());
-        ScreeningRoom screeningRoomSelection = aScreeningRoomList.getIndex(screeningRoomChoiceBox.getSelectionModel().getSelectedIndex());
+        try {
+            LocalDateTime dateTimeInput = LocalDateTime.parse(showtimeTextField.getText(), formatter);
+            Movie movieSelection = aMovieList.getIndex(movieChoiceBox.getSelectionModel().getSelectedIndex());
+            ScreeningRoom screeningRoomSelection = aScreeningRoomList.getIndex(screeningRoomChoiceBox.getSelectionModel().getSelectedIndex());
 
-        Showtime addedShowtime = new Showtime(dateTimeInput, movieSelection, screeningRoomSelection);
-        aShowtimeList.add(addedShowtime);
+            Showtime addedShowtime = new Showtime(dateTimeInput, movieSelection, screeningRoomSelection);
+            aShowtimeList.add(addedShowtime);
 
-        displayShowtimes();
+            displayShowtimes();
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Date must be formatted to this format: yyyy-MM-dd HH:mm
+                    YOU MUST SELECT A MOVIE!!!!!!!!
+                    you must select a screening room... or else...""", ButtonType.OK);
+            alert.showAndWait();
+        }
 
     }
 
@@ -107,13 +126,29 @@ public class ManagerShowtimeController implements Initializable {
 
     @FXML
     void onUpdateClick(){
-        LocalDateTime dateTimeInput = LocalDateTime.parse(showtimeTextField.getText(), formatter);
-        Movie movieSelection = aMovieList.getIndex(movieChoiceBox.getSelectionModel().getSelectedIndex());
-        ScreeningRoom screeningRoomSelection = aScreeningRoomList.getIndex(screeningRoomChoiceBox.getSelectionModel().getSelectedIndex());
+        try {
+            LocalDateTime dateTimeInput = LocalDateTime.parse(showtimeTextField.getText(), formatter);
+            Movie movieSelection = aMovieList.getIndex(movieChoiceBox.getSelectionModel().getSelectedIndex());
+            ScreeningRoom screeningRoomSelection = aScreeningRoomList.getIndex(screeningRoomChoiceBox.getSelectionModel().getSelectedIndex());
 
-        Showtime updatedShowtime = new Showtime(dateTimeInput, movieSelection, screeningRoomSelection);
+            Showtime updatedShowtime = new Showtime(dateTimeInput, movieSelection, screeningRoomSelection);
 
-        ShowtimeList.getInstance().update(showtimesListView.getSelectionModel().getSelectedIndex(), updatedShowtime);
+            ShowtimeList.getInstance().update(showtimesListView.getSelectionModel().getSelectedIndex(), updatedShowtime);
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Date must be formatted to this format: yyyy-MM-dd HH:mm
+                    YOU MUST SELECT A MOVIE!!!!!!!!
+                    you must select a screening room... or else...""", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void onSaveClick(){
+        aManagerMenuController.save();
+        Platform.exit();
+        System.exit(0);
     }
 
 

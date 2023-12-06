@@ -1,5 +1,6 @@
 package com.example.project;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
@@ -23,6 +24,13 @@ public class ManagerReportsController {
         showtimesListView.getItems().clear();
         moviesListView.getItems().setAll(MovieList.getInstance().composeSalesList());
         showtimesListView.getItems().setAll(ShowtimeList.getInstance().composeSalesList());
+    }
+
+    @FXML
+    void onSaveClick(){
+        aManagerMenuController.save();
+        Platform.exit();
+        System.exit(0);
     }
 
 
