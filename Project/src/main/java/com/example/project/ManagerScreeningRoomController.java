@@ -1,9 +1,12 @@
 package com.example.project;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -51,20 +54,36 @@ public class ManagerScreeningRoomController implements Initializable {
     }
     @FXML
     public void onAddClick(){
-        String id = roomIDTextField.getText();
-        int seats = Integer.parseInt(seatsTextField.getText());
-        ScreeningRoom addedScreeningRoom = new ScreeningRoom(seats, id);
-        aScreeningRoomList.add(addedScreeningRoom);
-        displayScreeningRooms();
+        try {
+            String id = roomIDTextField.getText();
+            int seats = Integer.parseInt(seatsTextField.getText());
+            ScreeningRoom addedScreeningRoom = new ScreeningRoom(seats, id);
+            aScreeningRoomList.add(addedScreeningRoom);
+            displayScreeningRooms();
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Seats cannot be negative bozo
+                    ID also cannot be empty silly billy""", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML
     public void onUpdateClick(){
-        String id = roomIDTextField.getText();
-        int seats = Integer.parseInt(seatsTextField.getText());
-        ScreeningRoom update = new ScreeningRoom(seats, id);
-        aScreeningRoomList.update(screeningRoomListView.getSelectionModel().getSelectedIndex(), update);
-        displayScreeningRooms();
+        try {
+            String id = roomIDTextField.getText();
+            int seats = Integer.parseInt(seatsTextField.getText());
+            ScreeningRoom update = new ScreeningRoom(seats, id);
+            aScreeningRoomList.update(screeningRoomListView.getSelectionModel().getSelectedIndex(), update);
+            displayScreeningRooms();
+        }
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, """
+                    Seats cannot be negative bozo
+                    ID also cannot be empty silly billy""", ButtonType.OK);
+            alert.showAndWait();
+        }
 
     }
 
@@ -72,6 +91,13 @@ public class ManagerScreeningRoomController implements Initializable {
     public void onDeleteClick(){
         aScreeningRoomList.delete(screeningRoomListView.getSelectionModel().getSelectedIndex());
         displayScreeningRooms();
+    }
+
+    @FXML
+    void onSaveClick(){
+        aManagerMenuController.save();
+        Platform.exit();
+        System.exit(0);
     }
 
 }

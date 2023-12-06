@@ -36,7 +36,7 @@ public class Movie implements ManagementCollection, Serializable {
      * @throws IllegalArgumentException If the title length exceeds 255.
      */
     void setTitle(String pTitle){
-        if(pTitle.length() < 255){
+        if(pTitle.length() < 255 && !pTitle.isEmpty()){
             this.aTitle = pTitle;
         } else {
             throw new IllegalArgumentException("Title length cannot exceed 255 characters");
@@ -50,7 +50,7 @@ public class Movie implements ManagementCollection, Serializable {
      * @throws IllegalArgumentException If the runtime length exceeds 1440 minutes.
      */
     void setRuntime(int pRuntime){
-        if (pRuntime < 1440){
+        if (pRuntime < 1440 && pRuntime > 0){
             this.aRuntime = pRuntime;
         } else {
             throw new IllegalArgumentException("Movie length should not exceed 1440 minuets");

@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.ManagerReportsController">
    <children>
       <Text layoutX="220.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports">
@@ -20,6 +19,6 @@
       <Text layoutX="255.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Showtimes" />
       <Text fx:id="movieTicketsSoldText" layoutX="14.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="24 tickets sold" />
       <Text fx:id="showtimeTicketsSoldText" layoutX="255.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="165 tickets sold" />
-      <Button fx:id="closeButton" layoutX="225.0" layoutY="323.0" mnemonicParsing="false" text="Close" />
+      <Button fx:id="closeButton" layoutX="225.0" layoutY="323.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save &amp; Quit" />
    </children>
 </AnchorPane>

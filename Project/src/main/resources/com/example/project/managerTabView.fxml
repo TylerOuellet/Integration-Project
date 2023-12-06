@@ -37,6 +37,14 @@
                   </HBox>
               </content>
             </Tab>
+            <Tab text="Client List">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER">
+                      <fx:include source="managerClients-view.fxml" />
+                  </HBox>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

@@ -23,5 +23,6 @@
       <ListView fx:id="screeningRoomListView" layoutX="11.0" layoutY="82.0" prefHeight="200.0" prefWidth="334.0" />
       <TextField fx:id="seatsTextField" layoutX="125.0" layoutY="329.0" prefHeight="25.0" prefWidth="161.0" />
       <Label layoutX="37.0" layoutY="333.0" text="Available Seats:" />
+      <Button layoutX="26.0" layoutY="366.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save &amp; Quit" />
    </children>
 </AnchorPane>
