@@ -56,7 +56,7 @@ public class MovieList implements Serializable, Iterable<Movie> {
     public LinkedList<String> composeSalesList(){
         LinkedList<String> listed = new LinkedList<>();
         for (Movie currentMovie : aMovieList){
-            listed.add(currentMovie.getTitle() + "Tickets Sold: "+ currentMovie.getTicketSales());
+            listed.add(currentMovie.getTitle() + " "+ "Tickets Sold: "+ currentMovie.getTicketSales());
         }
         return listed;
     }
