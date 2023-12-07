@@ -49,7 +49,7 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
     public LinkedList<String> composeSalesList(){
         LinkedList<String> listed = new LinkedList<>();
         for (Showtime currentShowtime : aShowTimeList){
-            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "Tickets Sold: " + currentShowtime.getTicketsSold());
+            listed.add(currentShowtime.getShownMovie().getTitle()+ " " + "Plays At: " + currentShowtime.getShowTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + " " + "Tickets Sold: " + currentShowtime.getTicketsSold());
 
         }
         return listed;
