@@ -1,17 +1,16 @@
 package com.example.project;
-
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.*;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * parent class of all the manager tabs, therefore contains the tab view.
+ * is also responsible for saving and loading the lists.
+ */
 public class ManagerMenuController implements Initializable {
     @FXML
     private AnchorPane nestedShowtimeView;
@@ -50,53 +49,62 @@ public class ManagerMenuController implements Initializable {
     private ManagerReportsController nestedStatsViewController;
 
 
-
-
+    /**
+     * method that executes when switched to the screening room tab. binds the controllers then displays the content
+     */
     @FXML
-    void screeningRoomSwitch (Event event){
+    void screeningRoomSwitch (){
         if (screeningRoomTab.isSelected()){
             if (nestedScreeningRoomViewController != null){
                 this.nestedScreeningRoomViewController.bindToManagerMenuController(this);
                 nestedScreeningRoomViewController.displayScreeningRooms();
             }
-
         }
     }
 
+    /**
+     * method that executes when switched to movies tab. binds the controllers then displays the content.
+     */
     @FXML
-    void test (Event event){
+    void movieSwitch(){
         if (movieTab.isSelected()){
             if(nestedMoviesViewController != null){
                 this.nestedMoviesViewController.bindTOManagerMenuController(this);
-                System.out.println("ManagerMoviesController set successfully");
                 nestedMoviesViewController.displayMovies();
             }
         }
     }
 
+    /**
+     * method that executes when switched to the Showtime tab. binds the controllers then displays the content.
+     */
     @FXML
-    void onShowtimeSwitch(Event event){
+    void onShowtimeSwitch(){
         if (showtimeTab.isSelected()){
             if(nestedShowtimeViewController != null){
                 this.nestedShowtimeViewController.bindTOManagerMenuController(this);
                 nestedShowtimeViewController.populateChoices();
-               // nestedShowtimeViewController.loadData();
                 nestedShowtimeViewController.displayShowtimes();
             }
-
         }
     }
 
+    /**
+     * method that executes when switched to the stats tab. binds the controllers then displays the content.
+     */
     @FXML
-    void onStatsSwich(Event event){
+    void onStatsSwitch(){
         if (statsTab.isSelected()){
             if(nestedStatsViewController != null){
                 nestedStatsViewController.bindTOManagerMenuController(this);
                 nestedStatsViewController.displaySalesLists();
-                nestedStatsViewController.bindTest();
             }
         }
     }
+
+    /**
+     * Method that saves the content of every manager list to a bin file.
+     */
     void save(){
         System.out.println("Saved!");
         try(FileOutputStream fs = new FileOutputStream("Lists.bin")){
@@ -111,6 +119,12 @@ public class ManagerMenuController implements Initializable {
             e.fillInStackTrace();
         }
     }
+
+    /**
+     * loads data and displays the data on the first tab.
+     * @param url comes with interface
+     * @param resourceBundle comes with interface
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DataInitializer.initializer();

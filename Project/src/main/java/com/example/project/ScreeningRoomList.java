@@ -1,8 +1,10 @@
 package com.example.project;
-
 import java.io.Serializable;
 import java.util.*;
-
+/**
+ * Used to hold a list of Screening rooms, implements an iterator as well as the singleton design pattern
+ * for a global reference.
+ */
 public class ScreeningRoomList implements Serializable, Iterable<ScreeningRoom> {
 
     private final List<ScreeningRoom> aScreeningRooms = new ArrayList<>();
@@ -75,14 +77,25 @@ public class ScreeningRoomList implements Serializable, Iterable<ScreeningRoom> 
         return aInstance;
     }
 
+    /**
+     * nested class to implement an iterator
+     */
     private class ScreeningRoomIterator implements Iterator<ScreeningRoom>{
         private int index = 0;
 
+        /**
+         * has neck check
+         * @return if there is a next value
+         */
         @Override
         public boolean hasNext(){
             return index < aScreeningRooms.size();
         }
 
+        /**
+         * iteration code
+         * @return the next Screening room.
+         */
         @Override
         public ScreeningRoom next(){
             if (hasNext()){
@@ -94,11 +107,19 @@ public class ScreeningRoomList implements Serializable, Iterable<ScreeningRoom> 
         }
     }
 
+    /**
+     * creates an iterator
+     * @return the iterator
+     */
     @Override
     public Iterator<ScreeningRoom> iterator(){
         return new ScreeningRoomIterator();
     }
 
+    /**
+     * uses the iterator to set the list instance to another, exclusively used on data load.
+     * @param pScreeningRoomList the list to be set
+     */
     public static void setInstance(ScreeningRoomList pScreeningRoomList){
         for (ScreeningRoom currentScreeningRoom : pScreeningRoomList){
             getInstance().add(currentScreeningRoom);

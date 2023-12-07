@@ -17,8 +17,6 @@
       <ListView fx:id="showtimesListView" layoutX="255.0" layoutY="77.0" prefHeight="200.0" prefWidth="276.0" />
       <Text layoutX="14.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies" />
       <Text layoutX="255.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Showtimes" />
-      <Text fx:id="movieTicketsSoldText" layoutX="14.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="24 tickets sold" />
-      <Text fx:id="showtimeTicketsSoldText" layoutX="255.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="165 tickets sold" />
       <Button fx:id="closeButton" layoutX="225.0" layoutY="323.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save &amp; Quit" />
    </children>
 </AnchorPane>

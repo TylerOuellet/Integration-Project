@@ -34,18 +34,18 @@ public class DataInitializer {
                 throw new RuntimeException(e);
             }
         } else {
-            ScreeningRoom test1 = new ScreeningRoom(123, "QWE");
-            ScreeningRoom test2 = new ScreeningRoom(123, "QWE");
-            ScreeningRoom test3 = new ScreeningRoom(123, "QWE");
+            ScreeningRoom test1 = new ScreeningRoom(123, "A47");
+            ScreeningRoom test2 = new ScreeningRoom(123, "A63");
+            ScreeningRoom test3 = new ScreeningRoom(123, "B12");
 
             ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
             aScreeningRoomList.add(test1);
             aScreeningRoomList.add(test2);
             aScreeningRoomList.add(test3);
 
-            Movie mtest1 = new Movie("test1", Genre.Action, 123);
-            Movie mtest2 = new Movie("test2", Genre.Action, 123);
-            Movie mtest3 = new Movie("test3", Genre.Action, 123);
+            Movie mtest1 = new Movie("Who Killed Capitan Alex", Genre.Action, 105);
+            Movie mtest2 = new Movie("John Wick 4", Genre.Action, 120);
+            Movie mtest3 = new Movie("Lord of the Rings: The Fellowship of the Ring", Genre.Adventure, 150);
 
             MovieList aMovieList = MovieList.getInstance();
             aMovieList.add(mtest1);

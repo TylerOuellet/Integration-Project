@@ -3,7 +3,10 @@ package com.example.project;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
+/**
+ * Used to hold a list of Showtimes, implements an iterator as well as the singleton design pattern
+ * for a global reference.
+ */
 public class ShowtimeList implements Serializable, Iterable<Showtime> {
     private final List<Showtime> aShowTimeList = new ArrayList<>();
 
@@ -88,14 +91,25 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
         return aInstance;
     }
 
+    /**
+     * nested class to create iterator.
+     */
     private class ShowtimeIterator implements Iterator<Showtime>{
 
         private int index = 0;
 
+        /**
+         * has next check
+         * @return if there is a next element
+         */
         public boolean hasNext(){
             return index < aShowTimeList.size();
         }
 
+        /**
+         * iteration code
+         * @return the next Showtime
+         */
         @Override
         public Showtime next(){
             if(hasNext()){
@@ -107,11 +121,19 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
         }
     }
 
+    /**
+     * Creates an iterator
+     * @return the created iterator
+     */
     @Override
     public Iterator<Showtime> iterator(){
         return new ShowtimeIterator();
     }
 
+    /**
+     * used tom set the instance of the list using the iterator, used exclusively on data load.
+     * @param pShowtimeList the list to be set
+     */
     public static void setInstance(ShowtimeList pShowtimeList){
         for (Showtime currentShowtime : pShowtimeList){
             getInstance().add(currentShowtime);

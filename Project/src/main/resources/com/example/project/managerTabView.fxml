@@ -9,7 +9,7 @@
    <children>
       <TabPane layoutY="-3.0" prefHeight="523.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab fx:id="movieTab" onSelectionChanged="#test" text="Movies">
+            <Tab fx:id="movieTab" onSelectionChanged="#movieSwitch" text="Movies">
               <content>
                   <HBox alignment="CENTER">
                   <fx:include fx:id="nestedMoviesView" source="managerMovies-view.fxml" />
@@ -30,7 +30,7 @@
                 </HBox>
             </content>
           </Tab>
-            <Tab fx:id="statsTab" onSelectionChanged="#onStatsSwich" text="Statistics">
+            <Tab fx:id="statsTab" onSelectionChanged="#onStatsSwitch" text="Statistics">
               <content>
                   <HBox alignment="CENTER">
                   <fx:include fx:id="nestedStatsView" source="managerReports-view.fxml" />

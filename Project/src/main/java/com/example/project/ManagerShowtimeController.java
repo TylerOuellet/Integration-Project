@@ -1,21 +1,19 @@
 package com.example.project;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * controller class for the showtime view.
+ */
 public class ManagerShowtimeController implements Initializable {
     @FXML
     private ListView<String> showtimesListView;
@@ -31,18 +29,20 @@ public class ManagerShowtimeController implements Initializable {
 
     private ManagerMenuController aManagerMenuController;
 
-    private ShowtimeList aShowtimeList = ShowtimeList.getInstance();
+    private final ShowtimeList aShowtimeList = ShowtimeList.getInstance();
 
-    private MovieList aMovieList = MovieList.getInstance();
+    private final MovieList aMovieList = MovieList.getInstance();
 
-    private ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
+    private final ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
 
-    int loadCounter = 0;
-
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
-
+    /**
+     * Initializes the on selected index change event for the list view to display data on change.
+     * @param url comes with implementation
+     * @param resourceBundle comes with implementation
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showtimesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -57,16 +57,25 @@ public class ManagerShowtimeController implements Initializable {
 
     }
 
+    /**
+     * used to bind this controller to its parent.
+     * @param pManagerMenuController the controller that will be bound.
+     */
     public void bindTOManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
     }
 
+    /**
+     * displays the content in the list view
+     */
     void displayShowtimes(){
-        showtimesListView.getSelectionModel().selectFirst();
         showtimesListView.getItems().clear();
         showtimesListView.getItems().setAll(aShowtimeList.composeList());
     }
 
+    /**
+     * fills the choice box with the movies from the list
+     */
     void populateChoices(){
         LinkedList<String> moviesToDisplay;
         moviesToDisplay = MovieList.getInstance().composeList();
@@ -76,26 +85,10 @@ public class ManagerShowtimeController implements Initializable {
         screeningRoomsToDisplay = ScreeningRoomList.getInstance().composeList();
         screeningRoomChoiceBox.getItems().setAll(screeningRoomsToDisplay);
     }
-    void loadData(){
-        while (loadCounter < 1){
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-            System.out.println(MovieList.getInstance().getIndex(2).getTitle());
-            System.out.println(ScreeningRoomList.getInstance().getIndex(2).getRoomID());
-
-
-            Showtime test1 = new Showtime(LocalDateTime.parse("2023-12-04 16:00", formatter), MovieList.getInstance().getIndex(0), ScreeningRoomList.getInstance().getIndex(0));
-            Showtime test2 = new Showtime(LocalDateTime.parse("2023-12-04 12:00", formatter), MovieList.getInstance().getIndex(1), ScreeningRoomList.getInstance().getIndex(1));
-            Showtime test3 = new Showtime(LocalDateTime.parse("2023-12-04 01:30", formatter), MovieList.getInstance().getIndex(2), ScreeningRoomList.getInstance().getIndex(2));
-
-            ShowtimeList.getInstance().add(test1);
-            ShowtimeList.getInstance().add(test2);
-            ShowtimeList.getInstance().add(test3);
-            loadCounter++;
-        }
-
-
-    }
+    /**
+     * used to add a new showtime to the list, re-displays the list.
+     */
     @FXML
     void onAddClick(){
         try {
@@ -118,12 +111,18 @@ public class ManagerShowtimeController implements Initializable {
 
     }
 
+    /**
+     * used to delete a showtime from the list, re-displays the list
+     */
     @FXML
     void onDeleteClick(){
         aShowtimeList.delete(showtimesListView.getSelectionModel().getSelectedIndex());
         displayShowtimes();
     }
 
+    /**
+     * used to update an existing showtime, re-displays the list
+     */
     @FXML
     void onUpdateClick(){
         try {
@@ -144,6 +143,9 @@ public class ManagerShowtimeController implements Initializable {
         }
     }
 
+    /**
+     * calls upon the save method and exits the program.
+     */
     @FXML
     void onSaveClick(){
         aManagerMenuController.save();
