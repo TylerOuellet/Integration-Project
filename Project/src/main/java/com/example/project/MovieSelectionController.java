@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the clients searching to buy movie tickets.
+ */
 public class MovieSelectionController implements Initializable {
 
     @FXML
@@ -43,9 +46,7 @@ public class MovieSelectionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         DataInitializer.initializer();
-
         moviesListView.getItems().setAll(loadedMovies.composeList());
         moviesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
         updateShowTimesListView(newValue);
@@ -137,7 +138,6 @@ public class MovieSelectionController implements Initializable {
                 tickets.add(ticket);
             }
         }
-
         return tickets;
     }
 

@@ -7,10 +7,18 @@ import java.io.ObjectInputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Used to initialize the data
+ * when opening the manager controller or the client controller.
+ */
 public class DataInitializer {
 
+    /** Date Format*/
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     * Initializer.
+     */
     public static void initializer() {
         File listBin = new File("Lists.bin");
         if (listBin.exists()){
