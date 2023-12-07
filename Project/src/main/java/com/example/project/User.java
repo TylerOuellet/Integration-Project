@@ -1,5 +1,6 @@
 package com.example.project;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -7,6 +8,7 @@ import java.io.Serializable;
  * It includes functionality for managing the user's password, username, and manager status.
  */
 public abstract class User implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String aPassword;
@@ -94,6 +96,5 @@ public abstract class User implements Serializable {
     boolean getManagerStatus(){
         return aIsManager;
     }
-
 
 }

@@ -51,10 +51,8 @@ public class ManagerShowtimeController implements Initializable {
                 showtimeTextField.setText(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getShowTime().format(formatter));
                 movieChoiceBox.setValue(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getShownMovie().getTitle());
                 screeningRoomChoiceBox.setValue(aShowtimeList.getIndex(showtimesListView.getSelectionModel().getSelectedIndex()).getScreeningRoom().getRoomID());
-
             }
         });
-
     }
 
     /**
@@ -108,7 +106,6 @@ public class ManagerShowtimeController implements Initializable {
                     you must select a screening room... or else...""", ButtonType.OK);
             alert.showAndWait();
         }
-
     }
 
     /**
@@ -152,6 +149,4 @@ public class ManagerShowtimeController implements Initializable {
         Platform.exit();
         System.exit(0);
     }
-
-
 }

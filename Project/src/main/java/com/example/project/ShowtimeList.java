@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 /**
- * Used to hold a list of Showtimes, implements an iterator as well as the singleton design pattern
+ * Used to hold a list of Showtime, implements an iterator as well as the singleton design pattern
  * for a global reference.
  */
 public class ShowtimeList implements Serializable, Iterable<Showtime> {
@@ -56,7 +56,7 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
     }
 
     /**
-     * used for adding new showtimes to the list.
+     * used for adding new showtime to the list.
      * @param pShowtime the showtime to be added.
      */
     void add(Showtime pShowtime){
@@ -64,7 +64,7 @@ public class ShowtimeList implements Serializable, Iterable<Showtime> {
     }
 
     /**
-     * Used to delete showtimes from the list
+     * Used to delete showtime from the list
      * @param pIndex the index of the showtime to be deleted.
      */
     void delete(int pIndex){

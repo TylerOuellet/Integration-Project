@@ -18,9 +18,8 @@ public class Showtime implements Serializable {
 
     /** Which screening room used during the showtime. */
     private ScreeningRoom aScreeningRoom;
-
-
     private int aTicketsSold;
+
     /**
      * Constructor.
      * @param pShowTime The date and time.
