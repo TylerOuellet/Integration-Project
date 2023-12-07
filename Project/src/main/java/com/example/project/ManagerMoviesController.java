@@ -3,15 +3,11 @@ package com.example.project;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class ManagerMoviesController implements Initializable {
@@ -35,7 +31,7 @@ public class ManagerMoviesController implements Initializable {
     private TextField runtimeTextField;
 
 
-    public MovieList loadedMovies = MovieList.getInstance();
+    public MovieList aMovieList = MovieList.getInstance();
 
     private ManagerMenuController aManagerMenuController;
 
@@ -50,7 +46,7 @@ public class ManagerMoviesController implements Initializable {
         moviesListView.getItems().clear();
 
        // moviesListView.getItems().removeAll();
-        moviesListView.getItems().setAll(loadedMovies.composeList());
+        moviesListView.getItems().setAll(aMovieList.composeList());
         moviesListView.getSelectionModel().selectFirst();
        // moviesListView.getSelectionModel().selectFirst();
         moviesListView.refresh();
@@ -65,7 +61,7 @@ public class ManagerMoviesController implements Initializable {
             Genre selectedGenre = genreChoiceBox.getValue();
             int runtime = Integer.parseInt(runtimeTextField.getText());
             Movie newMovie = new Movie(movieTitle, selectedGenre, runtime);
-            loadedMovies.add(newMovie);
+            aMovieList.add(newMovie);
             moviesListView.getItems().clear();
             displayMovies();
 
@@ -81,7 +77,7 @@ public class ManagerMoviesController implements Initializable {
 
     @FXML
     void onDeleteClick(){
-        loadedMovies.delete(moviesListView.getSelectionModel().getSelectedIndex());
+        aMovieList.delete(moviesListView.getSelectionModel().getSelectedIndex());
         moviesListView.getItems().clear();
         displayMovies();
     }
@@ -90,7 +86,7 @@ public class ManagerMoviesController implements Initializable {
         try {
             int runtime = Integer.parseInt(runtimeTextField.getText());
             Movie updatedMovie = new Movie(movieNameTextfield.getText(), genreChoiceBox.getValue(), runtime);
-            loadedMovies.update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
+            aMovieList.update(moviesListView.getSelectionModel().getSelectedIndex(), updatedMovie);
             moviesListView.getItems().clear();
             displayMovies();
         }
@@ -118,9 +114,9 @@ public class ManagerMoviesController implements Initializable {
         moviesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                movieNameTextfield.setText(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
-                runtimeTextField.setText(String.valueOf(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
-                genreChoiceBox.setValue(loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
+                movieNameTextfield.setText(aMovieList.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getTitle());
+                runtimeTextField.setText(String.valueOf(aMovieList.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getRuntime()));
+                genreChoiceBox.setValue(aMovieList.getIndex(moviesListView.getSelectionModel().getSelectedIndex()).getGenre());
             }
         });
     }

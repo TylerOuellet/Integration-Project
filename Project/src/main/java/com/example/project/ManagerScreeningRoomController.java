@@ -1,5 +1,4 @@
 package com.example.project;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,10 +8,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the screening room view
+ */
 public class ManagerScreeningRoomController implements Initializable {
 
     @FXML
@@ -31,6 +32,11 @@ public class ManagerScreeningRoomController implements Initializable {
     ScreeningRoomList aScreeningRoomList = ScreeningRoomList.getInstance();
 
 
+    /**
+     * initializes the on change list box event to set data on item switch.
+     * @param url comes with implementation
+     * @param resourceBundle comes with implementation
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         screeningRoomListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -43,15 +49,25 @@ public class ManagerScreeningRoomController implements Initializable {
 
     }
 
+    /**
+     * Used to bind the controller to its parent.
+     * @param pManagerMenuController the controller to be bound to.
+     */
     public void bindToManagerMenuController(ManagerMenuController pManagerMenuController){
         this.aManagerMenuController = pManagerMenuController;
     }
 
+    /**
+     * used to display the contents of the screening room list in the list view.
+     */
     public void displayScreeningRooms(){
-        screeningRoomListView.getSelectionModel().selectFirst();
         screeningRoomListView.getItems().clear();
         screeningRoomListView.getItems().setAll(aScreeningRoomList.composeList());
     }
+
+    /**
+     * Used to add another screening room to the list, re-displays the list.
+     */
     @FXML
     public void onAddClick(){
         try {
@@ -69,6 +85,9 @@ public class ManagerScreeningRoomController implements Initializable {
         }
     }
 
+    /**
+     * used to update an existing screening room, re-displays the list
+     */
     @FXML
     public void onUpdateClick(){
         try {
@@ -81,18 +100,23 @@ public class ManagerScreeningRoomController implements Initializable {
         catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.NONE, """
                     Seats cannot be negative bozo
-                    ID also cannot be empty silly billy""", ButtonType.OK);
+                    ID also cannot be empty silly""", ButtonType.OK);
             alert.showAndWait();
         }
-
     }
 
+    /**
+     * used to delete an existing screening room, re-displays the list.
+     */
     @FXML
     public void onDeleteClick(){
         aScreeningRoomList.delete(screeningRoomListView.getSelectionModel().getSelectedIndex());
         displayScreeningRooms();
     }
 
+    /**
+     * calls upon the save method and closes the application.
+     */
     @FXML
     void onSaveClick(){
         aManagerMenuController.save();

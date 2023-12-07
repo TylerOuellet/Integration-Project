@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Movie class that represents a movie into the app.
  * It adds the ManagementCollection interface.
  */
-public class Movie implements ManagementCollection, Serializable {
+public class Movie implements Serializable {
     private String aTitle;
 
     // maybe change this to string

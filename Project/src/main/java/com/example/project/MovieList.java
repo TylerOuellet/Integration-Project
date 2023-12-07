@@ -1,8 +1,9 @@
 package com.example.project;
-
 import java.io.Serializable;
 import java.util.*;
-
+/**
+ * Used to hold a list of movies, implements an iterator as well as the singleton design pattern for a global reference.
+ */
 public class MovieList implements Serializable, Iterable<Movie> {
 
 
@@ -88,14 +89,26 @@ public class MovieList implements Serializable, Iterable<Movie> {
         return aInstance;
     }
 
+    /**
+     * Nested class to implement iterator pattern
+     */
     private class MovieIterator implements Iterator<Movie>{
 
         private int index =0;
+
+        /**
+         * has next check
+         * @return if there is a next value
+         */
         @Override
         public boolean hasNext(){
             return index < aMovieList.size();
         }
 
+        /**
+         * iteration code
+         * @return the next movie
+         */
         @Override
         public Movie next(){
             if (hasNext()){
@@ -107,11 +120,19 @@ public class MovieList implements Serializable, Iterable<Movie> {
 
     }
 
+    /**
+     * call upon the iterator
+     * @return the iterator
+     */
     @Override
     public Iterator<Movie> iterator(){
         return new MovieIterator();
     }
 
+    /**
+     * used for setting the movie list, exclusively used on load.
+     * @param pMovieList the movie list to be set.
+     */
     public static void setInstance(MovieList pMovieList){
         for (Movie currentMovie : pMovieList){
             getInstance().add(currentMovie);

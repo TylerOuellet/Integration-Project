@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Represents the showtime in the movie theater for the application.
  * Used to store information about the showtime.
  */
-public class Showtime implements ManagementCollection, Serializable {
+public class Showtime implements Serializable {
 
     /** The date and the time. */
     private LocalDateTime aShowTime;
@@ -111,7 +111,11 @@ public class Showtime implements ManagementCollection, Serializable {
     public void addSales(int pSold){
         aTicketsSold = aTicketsSold + pSold;
     }
-    
+
+    /**
+     * Date time formatter method
+     * @return formatted string of the date time.
+     */
         @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
