@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The RegisterController class handles user registration and navigation between registration and login views.
+ */
 public class RegisterController {
 
     @FXML
@@ -29,12 +32,21 @@ public class RegisterController {
 
     private UserService userService;
 
+    /**
+     * Initializes the controller by loading existing users from the file.
+     */
     @FXML
     public void initialize() {
         List<ConcreteUser> users = UserDataStorage.loadUsers();
         this.userService = new UserService(users);
     }
 
+    /**
+     * Handles the action when the register button is clicked.
+     *
+     * @param event The ActionEvent triggered by the register button.
+     * @throws IOException If an error occurs during the switch to the login view.
+     */
     @FXML
     private void registerButtonClicked(ActionEvent event) throws IOException {
         String username = usernameTextField.getText();
@@ -65,11 +77,23 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Handles the action when the close button is clicked.
+     *
+     * @param event The ActionEvent triggered by the close button.
+     * @throws IOException If an error occurs during the switch to the login view.
+     */
     @FXML
     private void closeButtonClicked(ActionEvent event) throws IOException {
         switchToLoginView(event);
     }
 
+    /**
+     * Switches to the login view.
+     *
+     * @param event The ActionEvent triggered by the switch to login view.
+     * @throws IOException If an error occurs during the switch to the login view.
+     */
     private void switchToLoginView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
         Parent root = loader.load();
@@ -80,6 +104,11 @@ public class RegisterController {
         stage.show();
     }
 
+    /**
+     * Shows an alert with the specified message.
+     *
+     * @param message The content of the alert.
+     */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("ERROR");

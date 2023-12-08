@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The LoginController class handles user authentication and navigation between login and registration views.
+ */
 public class LoginController {
     @FXML
     private TextField usernameTextField;
@@ -23,6 +26,9 @@ public class LoginController {
 
     private UserService userService;
 
+    /**
+     * Initializes the controller by loading users from the file and printing user details.
+     */
     public void initialize() {
         // Load users from file
         List<ConcreteUser> loadedUsers = UserDataStorage.loadUsers();
@@ -30,11 +36,21 @@ public class LoginController {
         userService.printUserDetails();
     }
 
+    /**
+     * Handles the action when the register button is clicked.
+     *
+     * @param event The ActionEvent triggered by the register button.
+     */
     @FXML
     void registerButtonClicked(ActionEvent event) {
         openRegisterView();
     }
 
+    /**
+     * Handles the action when the login button is clicked.
+     *
+     * @param event The ActionEvent triggered by the login button.
+     */
     @FXML
     void loginButtonClicked(ActionEvent event) {
         String username = usernameTextField.getText();
@@ -49,6 +65,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Opens the register view when called.
+     */
     private void openRegisterView() {
         Stage stage = (Stage) usernameTextField.getScene().getWindow();
         try {
@@ -64,6 +83,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * Opens either the manager or user view based on the manager status.
+     *
+     * @param isManager A boolean indicating whether the user is a manager or not.
+     */
     private void openMainMenuOrMovieSelection(boolean isManager) {
         Stage stage = (Stage) usernameTextField.getScene().getWindow();
         try {
@@ -87,6 +111,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * Shows an alert with the specified title and content.
+     *
+     * @param title   The title of the alert.
+     * @param content The content of the alert.
+     */
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -95,6 +125,11 @@ public class LoginController {
         alert.showAndWait();
     }
 
+    /**
+     * Closes the current stage.
+     *
+     * @param event The ActionEvent triggered by the close button.
+     */
     @FXML
     void closeButtonClicked(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

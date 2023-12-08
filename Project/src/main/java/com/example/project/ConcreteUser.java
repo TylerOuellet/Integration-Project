@@ -6,6 +6,7 @@ import java.io.*;
  * Represents a concrete implementation of the user.
  */
 public class ConcreteUser extends User implements Serializable {
+    /** The file name for storing user data. */
     @Serial
     private static final long serialVersionUID = 1L;
 

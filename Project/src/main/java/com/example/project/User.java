@@ -63,6 +63,12 @@ public abstract class User implements Serializable {
         return aUsername;
     }
 
+    /**
+     * It sets the email for the user.
+     *
+     * @param pEmail The email of the user.
+     * @throws IllegalArgumentException If the user email contains @, but no as the first or the last element.
+     */
     void setEmail(String pEmail){
         if (pEmail.contains("@") && !pEmail.startsWith("@") && !pEmail.endsWith("@")){
             this.aEmail = pEmail;
@@ -71,6 +77,10 @@ public abstract class User implements Serializable {
         }
     }
 
+    /**
+     * It returns the email of the user.
+     * @return The email of the user (aEmail).
+     */
     String getEmail(){
         return aEmail;
     }
