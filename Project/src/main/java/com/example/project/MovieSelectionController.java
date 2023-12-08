@@ -10,6 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,17 +84,43 @@ public class MovieSelectionController implements Initializable {
     public void buyTicketsButton() {
         try {
             int quantity = Integer.parseInt(numberOfTicketsTextfield.getText());
+            Movie selectedMovieObj = loadedMovies.getIndex(moviesListView.getSelectionModel().getSelectedIndex());
             String selectedMovie = moviesListView.getSelectionModel().getSelectedItem();
             Showtime selectedShowtime = showtimesListView.getSelectionModel().getSelectedItem();
 
             if (selectedMovie == null || selectedShowtime == null) {
                 showSelectionErrorDialog();
             } else {
+                selectedMovieObj.addSales(quantity);
+                selectedShowtime.addSales(quantity);
+
+                save();
+
                 showPurchaseTicketsDialog(quantity, selectedMovie, selectedShowtime);
+
+
             }
         } catch (NumberFormatException e) {
             showErrorDialog();
         }
+    }
+
+    /**
+     * saves the data to a bin file.
+     */
+    static void save() {
+        try(FileOutputStream fs = new FileOutputStream("Lists.bin")){
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(MovieList.getInstance());
+            os.writeObject(ScreeningRoomList.getInstance());
+            os.writeObject(ShowtimeList.getInstance());
+
+            os.close();
+
+        } catch (IOException e){
+            e.fillInStackTrace();
+        }
+        System.out.println("Saved!");
     }
 
     /**

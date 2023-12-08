@@ -106,18 +106,7 @@ public class ManagerMenuController implements Initializable {
      * Method that saves the content of every manager list to a bin file.
      */
     void save(){
-        System.out.println("Saved!");
-        try(FileOutputStream fs = new FileOutputStream("Lists.bin")){
-            ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(MovieList.getInstance());
-            os.writeObject(ScreeningRoomList.getInstance());
-            os.writeObject(ShowtimeList.getInstance());
-
-            os.close();
-
-        } catch (IOException e){
-            e.fillInStackTrace();
-        }
+        MovieSelectionController.save();
     }
 
     /**
