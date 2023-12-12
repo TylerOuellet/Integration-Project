@@ -69,6 +69,7 @@ public class ManagerShowtimeController implements Initializable {
     void displayShowtimes(){
         showtimesListView.getItems().clear();
         showtimesListView.getItems().setAll(aShowtimeList.composeList());
+        showtimesListView.getSelectionModel().selectFirst();
     }
 
     /**
@@ -130,12 +131,13 @@ public class ManagerShowtimeController implements Initializable {
             Showtime updatedShowtime = new Showtime(dateTimeInput, movieSelection, screeningRoomSelection);
 
             ShowtimeList.getInstance().update(showtimesListView.getSelectionModel().getSelectedIndex(), updatedShowtime);
+            displayShowtimes();
         }
         catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.NONE, """
                     Date must be formatted to this format: yyyy-MM-dd HH:mm
                     YOU MUST SELECT A MOVIE!!!!!!!!
-                    you must select a screening room... or else...""", ButtonType.OK);
+                    you must select a screening room...""", ButtonType.OK);
             alert.showAndWait();
         }
     }
