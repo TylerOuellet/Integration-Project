@@ -63,6 +63,7 @@ public class ManagerScreeningRoomController implements Initializable {
     public void displayScreeningRooms(){
         screeningRoomListView.getItems().clear();
         screeningRoomListView.getItems().setAll(aScreeningRoomList.composeList());
+        screeningRoomListView.getSelectionModel().selectFirst();
     }
 
     /**
@@ -79,8 +80,8 @@ public class ManagerScreeningRoomController implements Initializable {
         }
         catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.NONE, """
-                    Seats cannot be negative bozo
-                    ID also cannot be empty silly billy""", ButtonType.OK);
+                    Seats cannot be negative
+                    ID also cannot be empty""", ButtonType.OK);
             alert.showAndWait();
         }
     }

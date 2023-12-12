@@ -44,7 +44,6 @@ public class ManagerMoviesController implements Initializable {
      * displays the movies in the list view, also clears the list view
      */
     public void displayMovies(){
-        moviesListView.getSelectionModel().selectFirst();
         moviesListView.getItems().clear();
         moviesListView.getItems().setAll(aMovieList.composeList());
         moviesListView.getSelectionModel().selectFirst();
