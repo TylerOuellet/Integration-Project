@@ -115,9 +115,9 @@ public class Showtime implements Serializable {
      * Date time formatter method
      * @return formatted string of the date time.
      */
-        @Override
+    @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return getShowTime().format(formatter);
     }
 }
