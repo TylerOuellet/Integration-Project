@@ -1,6 +1,7 @@
 package com.example.project;
 
 import java.io.*;
+import java.time.LocalDateTime;
 
 /**
  * Represents a concrete implementation of the user.
@@ -12,6 +13,7 @@ public class ConcreteUser extends User implements Serializable {
 
     private final int userId;
     private final String name;
+    private final LocalDateTime registrationDateTime;
 
     /**
      * Constructor
@@ -30,6 +32,7 @@ public class ConcreteUser extends User implements Serializable {
         setPassword(password);
         setEmail(email);
         setManagerStatus(isManager);
+        this.registrationDateTime = LocalDateTime.now();
     }
 
     /**
@@ -46,5 +49,9 @@ public class ConcreteUser extends User implements Serializable {
      */
     public String getName() {
         return name;
+    }
+
+    public LocalDateTime getRegistrationDateTime() {
+        return registrationDateTime;
     }
 }

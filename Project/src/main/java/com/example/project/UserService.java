@@ -98,7 +98,8 @@ public class UserService {
                     ", Username: " + user.getUsername() +
                     ", Password: " + user.getPassword() +
                     ", Email:" + user.getEmail() +
-                    ", Manager: " + user.getManagerStatus());
+                    ", Manager: " + user.getManagerStatus() +
+                    ", Registration Date: " + user.getRegistrationDateTime());
         }
     }
 }
